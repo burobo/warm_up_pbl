@@ -8,7 +8,10 @@
 3. DB作成
 ```docker-compose exec web rails db:create```
 
-4. ブラウザでアクセス
+4. webpack-dev-server起動
+```docker-compose exec web bin/webpack-dev-server```
+
+5. ブラウザでアクセス
 http://localhost:3000/
 
 5. コンテナ停止

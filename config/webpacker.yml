@@ -55,7 +55,7 @@ development:
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
     https: false
-    host: localhost
+    host: 0.0.0.0
     port: 3035
     public: localhost:3035
     hmr: false
@@ -71,7 +71,10 @@ development:
       'Access-Control-Allow-Origin': '*'
     watch_options:
       ignored: '**/node_modules/**'
-
+      # // 最初の変更からここで設定した期間に行われた変更は1度の変更の中で処理が行われる
+      aggregateTimeout: 200
+      # // ポーリングの間隔
+      poll: 1000
 
 test:
   <<: *default
