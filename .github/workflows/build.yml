@@ -24,8 +24,7 @@ jobs:
       
       - name: webpack compile
         run: |
-          docker-compose exec -T web rails webpacker:install:vue
-          docker-compose exec -T web rails webpacker:compile
+          docker-compose exec -T web bin/rails assets:precompile
 
       - name: create database
         run: |
