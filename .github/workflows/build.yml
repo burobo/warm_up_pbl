@@ -21,6 +21,10 @@ jobs:
       - name: docker-compose up
         run: |
           docker-compose up -d
+      
+      - name: create database
+        run: |
+          docker-compose exec -T web rails db:create
 
       - name: exec rspec
         run: |
