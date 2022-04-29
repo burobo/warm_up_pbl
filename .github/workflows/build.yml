@@ -1,0 +1,31 @@
+name: build
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+  push:
+    branches:
+      - feature/add-ci-cd-config
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+      NODE_ENV: development
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: docker-compose up
+        run: |
+          docker-compose up -d
+
+      - name: webpacker compile
+        run: |
+          docker-compose exec web rails webpacker:compile
+
+      - name: exec rspec
+        run: |
+          docker-compose exec web bundle exec rspec
