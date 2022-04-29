@@ -6,8 +6,8 @@ on:
       - main
       - develop
   push:
-    branches:
-      - feature/add-ci-cd-config
+      - main
+      - develop
 
 jobs:
   build:
