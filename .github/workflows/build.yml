@@ -22,6 +22,11 @@ jobs:
         run: |
           docker-compose up -d
       
+      - name: webpack compile
+        run: |
+          docker-compose exec -T web rails webpacker:install
+          docker-compose exec -T web rails webpacker:compile
+
       - name: create database
         run: |
           docker-compose exec -T web rails db:create
