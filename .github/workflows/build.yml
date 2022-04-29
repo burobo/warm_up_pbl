@@ -24,8 +24,8 @@ jobs:
 
       - name: webpacker compile
         run: |
-          docker-compose exec web rails webpacker:compile
+          docker-compose exec -T web rails webpacker:compile
 
       - name: exec rspec
         run: |
-          docker-compose exec web bundle exec rspec
+          docker-compose exec -T web bundle exec rspec
