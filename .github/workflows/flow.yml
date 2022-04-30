@@ -40,21 +40,21 @@ jobs:
           name: upload artifact
           path: artifacts/build
 
-    deploy:
-      name: deploy
-      needs: build
-      if: ${{ GITHUB_REF_NAME }} == 'feature/add-ci-cd-config'
-      steps:
-      - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v3
-        with:
-          name: build artifact
-          path: artifacts/build
+  deploy:
+    name: deploy
+    needs: build
+    if: ${{ GITHUB_REF_NAME }} == 'feature/add-ci-cd-config'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v3
+      with:
+        name: build artifact
+        path: artifacts/build
 
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "warmuppbl"
-          heroku_email: ${{secrets.EMAIL}}
-          appdir: "artifacts/build"
+    - uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "warmuppbl"
+        heroku_email: ${{secrets.EMAIL}}
+        appdir: "artifacts/build"
 
