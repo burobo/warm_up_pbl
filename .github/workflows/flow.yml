@@ -18,46 +18,46 @@ jobs:
       RAILS_ENV: test
       NODE_ENV: development
     steps:
-      - uses: actions/checkout@v2
-      - name: docker-compose up
-        run: |
-          docker-compose up -d
+      - name: debug
+        run: echo ${{github.ref}}
+  #     - uses: actions/checkout@v2
+  #     - name: docker-compose up
+  #       run: |
+  #         docker-compose up -d
       
-      - name: webpack compile
-        run: |
-          docker-compose exec -T web rails assets:precompile
+  #     - name: webpack compile
+  #       run: |
+  #         docker-compose exec -T web rails assets:precompile
 
-      - name: create database
-        run: |
-          docker-compose exec -T web rails db:create
+  #     - name: create database
+  #       run: |
+  #         docker-compose exec -T web rails db:create
 
-      - name: exec rspec
-        run: |
-          docker-compose exec -T web bundle exec rspec
+  #     - name: exec rspec
+  #       run: |
+  #         docker-compose exec -T web bundle exec rspec
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: upload artifact
-          path: ./
+  #     - uses: actions/upload-artifact@v3
+  #       with:
+  #         name: upload artifact
+  #         path: ./
 
-  deploy:
-    name: deploy
-    needs: build
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_REF_NAME: GITHUB_REF_NAME
-    if: github.ref == 'feature/add-ci-cd-config'
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v3
-        with:
-          name: build artifact
-          path: build-artifact
+  # deploy:
+  #   name: deploy
+  #   if: ${{ github.ref == 'feature/add-ci-cd-config' }}
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/download-artifact@v3
+  #       with:
+  #         name: build artifact
+  #         path: build-artifact
 
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "warmuppbl"
-          heroku_email: ${{secrets.EMAIL}}
-          appdir: "build-artifact"
+  #     - uses: akhileshns/heroku-deploy@v3.12.12
+  #       with:
+  #         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+  #         heroku_app_name: "warmuppbl"
+  #         heroku_email: ${{secrets.EMAIL}}
+  #         appdir: "build-artifact"
 
