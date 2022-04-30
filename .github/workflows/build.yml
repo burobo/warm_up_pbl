@@ -34,3 +34,7 @@ jobs:
       - name: exec rspec
         run: |
           docker-compose exec -T web bundle exec rspec
+
+      - uses: actions/upload-artifact@v3
+      - name: upload artifact
+        path: artifacts/build
