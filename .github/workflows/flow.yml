@@ -12,6 +12,7 @@ on:
       - feature/add-ci-cd-config
 jobs:
   build:
+    name: build
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
@@ -40,6 +41,8 @@ jobs:
         path: artifacts/build
 
     deploy:
+      name: deploy
+      needs: build
       if: ${{ GITHUB_REF_NAME }} == 'feature/add-ci-cd-config'
       steps:
       - uses: actions/checkout@v2
