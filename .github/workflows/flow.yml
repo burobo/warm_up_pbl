@@ -43,6 +43,7 @@ jobs:
   deploy:
     name: deploy
     needs: build
+    runs-on: ubuntu-latest
     env:
       GITHUB_REF_NAME: GITHUB_REF_NAME
     if: github.ref == 'feature/add-ci-cd-config'
