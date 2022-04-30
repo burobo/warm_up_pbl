@@ -12,8 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v3
-        with: build-artifact
-        path: artifacts/build
+        with:
+          name: build-artifact
+          path: artifacts/build
 
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
