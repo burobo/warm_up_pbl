@@ -46,7 +46,7 @@ jobs:
 
   deploy:
     name: deploy
-    if: ${{ github.ref == 'refs/heads/feature/add-ci-cd-config  ' }}
+    if: ${{ github.ref == 'refs/heads/feature/add-ci-cd-config' }}
     needs: build
     runs-on: ubuntu-latest
     steps:
