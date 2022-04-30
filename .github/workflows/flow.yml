@@ -38,7 +38,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: upload artifact
-          path: artifacts/build
+          path: ./
 
   deploy:
     name: deploy
@@ -52,12 +52,12 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: build artifact
-          path: artifacts/build
+          path: build-artifact
 
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "warmuppbl"
           heroku_email: ${{secrets.EMAIL}}
-          appdir: "artifacts/build"
+          appdir: "build-artifact"
 
