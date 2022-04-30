@@ -43,7 +43,7 @@ jobs:
   deploy:
     name: deploy
     needs: build
-    if: ${{ GITHUB_REF_NAME }} == 'feature/add-ci-cd-config'
+    if: ${{ env.GITHUB_REF_NAME }} == 'feature/add-ci-cd-config'
     steps:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@v3
