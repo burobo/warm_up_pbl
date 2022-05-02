@@ -1,0 +1,66 @@
+name: flow
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+  push:
+    branches:
+      - main
+      - develop
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+      NODE_ENV: development
+    steps:
+      - uses: actions/checkout@v2
+      - name: docker-compose up
+        run: |
+          docker-compose up -d
+      
+      - name: webpack compile
+        run: |
+          docker-compose exec -T web rails assets:precompile
+
+      - name: create database
+        run: |
+          docker-compose exec -T web rails db:create
+
+      - name: exec rspec
+        run: |
+          docker-compose exec -T web bundle exec rspec
+
+      - name: zip build artifact
+        run:
+          zip build-artifact.zip ./* -r
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build-artifact
+          path: build-artifact.zip
+
+  # deploy:
+  #   name: deploy
+  #   if: ${{ github.ref == 'refs/heads/feature/add-ci-cd-config' }}
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/download-artifact@v3
+  #       with:
+  #         name: build-artifact
+      
+  #     - name: unzip build artifact
+  #       run:
+  #         unzip build-artifact.zip -d release
+
+  #     - uses: akhileshns/heroku-deploy@v3.12.12
+  #       with:
+  #         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+  #         heroku_app_name: "warmuppbl"
+  #         heroku_email: ${{ secrets.EMAIL }}
+  #         appdir: "release"
