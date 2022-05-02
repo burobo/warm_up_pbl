@@ -1,5 +1,4 @@
 import { createApp } from 'vue'
-import "vuetify/dist/vuetify.min.css";
 import App from '../app.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
