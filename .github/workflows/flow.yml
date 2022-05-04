@@ -29,6 +29,7 @@ jobs:
       - name: create database
         run: |
           docker-compose exec -T web rails db:create
+          docker-compose exec -T web rails db:migrate
 
       - name: exec rspec
         run: |
