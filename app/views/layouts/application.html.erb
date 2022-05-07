@@ -12,6 +12,11 @@
 
   <body>
     <div id="js-hello-vue"></div>
+    <% if user_signed_in? %>
+      <header>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-dark" %>
+      </header>
+    <% end %>
     <%= yield %>
   </body>
 </html>
