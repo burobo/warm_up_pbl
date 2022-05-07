@@ -49,4 +49,15 @@ RSpec.describe "Registrations", type: :request do
       end
     end
   end
+
+  describe "DELETE /users/sign_out" do
+    subject { delete destroy_user_session_path(current_user) }
+    let!(:current_user) { create(:user) }
+    before { sign_in current_user }
+
+    it do
+      subject
+      expect(response).to have_http_status(204)
+    end
+  end
 end
