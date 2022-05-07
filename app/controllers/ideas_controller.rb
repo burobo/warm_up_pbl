@@ -11,8 +11,8 @@ class IdeasController < ApplicationController
   def show
   end
 
-  # GET /ideas/new
-  def new
+  # GET /ideas/register
+  def register
     @idea = Idea.new
   end
 
@@ -29,7 +29,7 @@ class IdeasController < ApplicationController
         format.html { redirect_to idea_url(@idea), notice: "Idea was successfully created." }
         format.json { render :show, status: :created, location: @idea }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :"ideas/new", status: :unprocessable_entity }
         format.json { render json: @idea.errors, status: :unprocessable_entity }
       end
     end

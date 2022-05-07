@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'ideas/register', 'ideas#register'
+  post 'ideas' => 'ideas#create', :as => :idea_create
   resources :ideas
   root to: 'pages#index'
   devise_for :users
