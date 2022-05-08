@@ -24,8 +24,6 @@ class IdeasController < ApplicationController
   def create
     @idea = Idea.new(idea_params)
     @idea.user_id = current_user.id
-    logger.debug("@idea.errors")
-    logger.debug(@idea.errors)
     respond_to do |format|
       if @idea.save
         format.html { redirect_to idea_url(@idea), notice: "Idea was successfully created." }

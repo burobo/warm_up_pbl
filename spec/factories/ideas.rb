@@ -3,6 +3,6 @@ FactoryBot.define do
     title { "MyText" }
     outline { "MyText" }
     detail { "MyText" }
-    user { nil }
+    user
   end
 end
