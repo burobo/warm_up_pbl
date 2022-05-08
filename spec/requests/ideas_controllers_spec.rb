@@ -39,7 +39,7 @@ RSpec.describe "Ideas", type: :request do
         expect(idea_created.title).to eq idea.title
         expect(idea_created.outline).to eq idea.outline
         expect(idea_created.detail).to eq idea.detail
-        expect(response).to redirect_to idea_url(Idea.first.id)
+        expect(response).to redirect_to idea_url(idea_created.id)
       end
     end
     context "user is not authenticated" do
