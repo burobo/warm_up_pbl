@@ -30,7 +30,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'dotenv-rails'
 gem 'omniauth-facebook'
-gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
