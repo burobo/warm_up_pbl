@@ -17,6 +17,7 @@
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-dark" %>
       </header>
     <% end %>
+    <p class="notice"><%= notice %></p>
     <%= yield %>
   </body>
 </html>
