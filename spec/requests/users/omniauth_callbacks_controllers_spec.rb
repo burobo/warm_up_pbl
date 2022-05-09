@@ -6,7 +6,6 @@ RSpec.describe "Users::OmniauthCallbacksControllers", type: :request do
     context "when google login" do
       before do
         OmniAuth.config.mock_auth[:google_oauth2] = nil
-        Rails.application.env_config["devise.mapping"] = Devise.mappings[:user] 
         Rails.application.env_config['omniauth.auth'] = set_omniauth
       end
       let(:path) { post '/users/auth/google_oauth2/callback' }
@@ -20,7 +19,6 @@ RSpec.describe "Users::OmniauthCallbacksControllers", type: :request do
     context "when facebook login" do
       before do
         OmniAuth.config.mock_auth[:facebook] = nil
-        Rails.application.env_config["devise.mapping"] = Devise.mappings[:user] 
         Rails.application.env_config['omniauth.auth'] = set_omniauth :facebook
       end
       let(:path) { post '/users/auth/facebook/callback' }
