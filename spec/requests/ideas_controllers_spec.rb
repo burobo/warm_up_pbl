@@ -35,11 +35,11 @@ RSpec.describe "Ideas", type: :request do
       it "normal" do
         subject
         expect(response).to have_http_status(302)
-        idea_created = Idea.where(user: user.id).first
+        idea_created = Idea.where(user: user.id).last
         expect(idea_created.title).to eq idea.title
         expect(idea_created.outline).to eq idea.outline
         expect(idea_created.detail).to eq idea.detail
-        expect(response).to redirect_to idea_url(idea_created.id)
+        expect(response).to redirect_to(controller: :ideas, action: :show, id: idea_created.id, notice: "Idea was successfully created.")
       end
     end
     context "user is not authenticated" do

@@ -20,13 +20,13 @@ class IdeasController < ApplicationController
   # def edit
   # end
 
-  # POST /ideas or /ideas.json
+  # POST /ideas/register
   def create
     @idea = Idea.new(idea_params)
     @idea.user_id = current_user.id
     respond_to do |format|
       if @idea.save
-        format.html { redirect_to idea_url(@idea), notice: "Idea was successfully created." }
+        format.html { redirect_to controller: :ideas, action: :show, id: @idea.id, notice: "Idea was successfully created." }
         format.json { render :show, status: :created, location: @idea }
       else
         format.html { render :register, status: :unprocessable_entity }

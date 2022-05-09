@@ -34,5 +34,12 @@ RSpec.describe Idea, type: :model do
         expect(subject).not_to be_valid
       end
     end
+    context "when user is blank" do
+      let(:idea) { build(:idea, user: nil) }
+
+      it do
+        expect(subject).not_to be_valid
+      end
+    end
   end
 end

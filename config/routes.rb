@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'ideas/register', 'ideas#register'
   post 'ideas/register' => 'ideas#create'
-  resources :ideas
+  get 'ideas/:id' => 'ideas#show'
   root to: 'pages#index'
   devise_for :users
   get 'pages/detail'
