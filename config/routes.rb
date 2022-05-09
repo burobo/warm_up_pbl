@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   post 'ideas/register' => 'ideas#create'
   get 'ideas/:id' => 'ideas#show'
   root to: 'pages#index'
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   get 'pages/detail'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
