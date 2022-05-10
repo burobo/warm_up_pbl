@@ -8,6 +8,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_for(:google)
   end
 
+  def github
+    callback_for(:github)
+  end
+
   def callback_for(provider)
     @user = User.from_omniauth(request.env["omniauth.auth"])
     if @user.persisted?
