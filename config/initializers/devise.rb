@@ -274,7 +274,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
-  config.omniauth :github, ENV['CLIENT_ID'], ENV['CLIENT_SECRET']
+  config.omniauth :github, ENV['GITHUB_ID'], ENV['GITHUB_SECRET']
   OmniAuth.config.logger = Rails.logger if Rails.env.development?
 
   # ==> Warden configuration
