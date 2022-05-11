@@ -28,5 +28,18 @@ RSpec.describe "Users::OmniauthCallbacksControllers", type: :request do
         expect(response).to redirect_to root_url
       end
     end
+
+    context "when github login" do
+      before do
+        OmniAuth.config.mock_auth[:github] = nil
+        Rails.application.env_config['omniauth.auth'] = set_omniauth :github
+      end
+      let(:path) { post '/users/auth/github/callback' }
+
+      it do
+        expect { path }.to change(User, :count).by(1)
+        expect(response).to redirect_to root_url
+      end
+    end
   end
 end
