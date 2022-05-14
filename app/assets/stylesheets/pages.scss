@@ -2,67 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-// .top_image_wrapper {
-//     width: 100%;
-//     text-align: center;
-//   }
-
-#top_idea {
-  width: 100%;
-  position: relative;
+.bg-img {
+  height: 400px;
+  background-image: url("top_idea.jpg");
+  background-size: cover;
+  background-position: center 100%;
 }
-
-#top_title {
-  position: absolute;
-  top:30px;
-  left:30px;
-  padding:20px;
-  margin:0;
-  font-size:60px;
-  font: bold;
-  color: rgb(23, 20, 35);
-}
-
-#top_catch_copy {
-  position: absolute;
-  top:200px;
-  left:70px;
-  padding:20px;
-  margin:0;
-  font-size:30px;
-  color: rgb(52, 52, 54);
-}
-.search_container {
-  text-align: center;
-}
-
-.ideas_container {
-  // text-align: center;
-  list-style: none;
-}
-
-.ideas_list{
-  list-style: none;
-  border: solid 2px gray;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-.overview{
-  width: 60%;
-  // display:inline-block;
-  position: relative;
-}
-
-.originator, .status, .date{
-  width: 35%;
-  // margin: 0 0 0 auto;
-  // display:inline-block;
-  // float: right;
-}
-
-a {
-  text-decoration: none;
-  }
-
-li a{display:block;}
