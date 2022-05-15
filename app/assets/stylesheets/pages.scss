@@ -3,8 +3,9 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .bg-img {
-  height: 400px;
+  height: 350px;
   background-image: url("top_idea.jpg");
+  background-repeat:no-repeat;
   background-size: cover;
-  background-position: center 100%;
+  background-position: 50% 25%;
 }
