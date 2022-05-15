@@ -12,13 +12,13 @@
 
   <body>
     <!-- <div id="js-hello-vue"></div> -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3 p-3">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3 p-2">
       <a class="navbar-brand" href="#">ロゴ</a>
       <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="Navber">
-        <ul class="navbar-nav">
+      <div class="collapse navbar-collapse justify-content-end" id="Navber">
+        <ul class="navbar-nav mt-2 mb-2">
           <% if user_signed_in? %>
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link border rounded" %>
