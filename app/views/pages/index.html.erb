@@ -1,16 +1,15 @@
 <% if !user_signed_in? %>
   <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
   <%= link_to "ログイン", new_user_session_path, class: "btn btn-success" %>
-  <%= link_to "アイデア登録", ideas_register_path, class: "btn btn-primary text-right" %>
 <% end %>
-
+<%= link_to "アイデア登録", ideas_register_path, class: "btn btn-primary text-right" %>
 <div class="p-3 p-sm-5 mb-4 bg-img">
   <div class="container">
-    <h1 id= "display-4">Idea Bank</h1>
-    <p id= "lead">
+    <h1 class="display-1 fw-bold">Idea Bank</h1>
+    <div class="display-6 text-secondary m-4">
       ここにキャッチコピーを入れる<br>
-      ここにキャッチコピーを入れる<br>
-    </p>
+      ここにキャッチコピーを入れる
+    </div>
   </div>
 </div>
 
