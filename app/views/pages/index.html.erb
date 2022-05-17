@@ -1,66 +1,39 @@
-<div class="top_image_wrapper">
-  <% if !user_signed_in? %>
-    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
-    <%= link_to "ログイン", new_user_session_path, class: "btn btn-success" %>
-  <% end %>
-  <%= image_tag 'top_idea.jpg',id: "top_idea", class: "top_idea" %>
-  <p id= "top_title">Idea Bank</p>
-  <p id= "top_catch_copy">
-    ここにキャッチコピーを入れる<br>
-    ここにキャッチコピーを入れる<br>
-  </p>
-</div>
-
-<%= link_to "アイデア登録", ideas_register_path, class: "btn btn-primary text-right" %>
-<div class ="search_container">
-  <%= form_with url: "/search", method: :get do |form| %>
-    <%= form.label :query, "Search for:" %>
-    <%= form.text_field :query %>
-    <%= form.text_field :query %>
-    <%= form.text_field :query %>
-    <%= form.submit "Search Ideas" %>
-  <% end %>
+<div class="p-3 p-sm-5 mb-4 bg-img">
+  <div class="container">
+    <h1 class="display-1 fw-bold">Idea Bank</h1>
+    <div class="display-6 text-secondary m-4">
+      ここにキャッチコピーを入れる<br>
+      ここにキャッチコピーを入れる
+    </div>
+  </div>
 </div>
 
 <div class ="ideas_container">
-  <ul>
-    <li class="ideas_list">
-      <a href="/pages/detail"></a>
-        <div class="overview">
-          <h2>アイデア１タイトル</h2>
-          <span>要約</span>
-        <div>
-        <div class="originator">投稿者</div>
-        <div class="status">ステータス</div>
-        <div class="date">
-          <time datetime="2022-04-25">Posted 10 hours ago</time>
+  <% @ideas.each do |idea| %>
+    <a href="ideas/<%= idea.id %>" class="card w-75 bg-light mx-auto m-3 text-decoration-none link-dark">
+      <div class="card-body">
+        <div class="row p-1">
+          <h5 class="card-title col-9"><%= idea.title %></h5>
+          <p class="card-text ps-3 col-3">
+          最終更新:
+          <% if (Time.now.to_i - idea.updated_at.to_i) <= 60 * 60 %>
+          <%= (Time.now.to_i - idea.updated_at.to_i) / 60 %>
+          分前
+          <% elsif (Time.now.to_i - idea.updated_at.to_i) <= 60 * 60 * 24 %>
+          <%= (Time.now.to_i - idea.updated_at.to_i) / 60 / 60 %>
+          時間前
+          <% else %>
+          <%= (Time.now.to_i - idea.updated_at.to_i) / 60 / 60 / 24 %>
+          日前
+          <% end  %>
+          </p>
         </div>
-
-    </li>
-
-    <li class="ideas_list">
-      <div class="overview">
-        <h2>アイデア２タイトル</h2>
-        <span>要約</span>
-      <div>
-      <div class="originator">投稿者</div>
-      <div class="status">ステータス</div>
-      <div class="date">
-        <time datetime="2022-04-25">Posted 10 hours ago</time>
+        <p class="card-text ps-3">
+          <%= idea.outline %>
+        </p>
       </div>
-    </li>
-
-    <li class="ideas_list">
-    <div class="overview">
-      <h2>アイデア３タイトル</h2>
-      <span>要約</span>
-    <div>
-    <div class="originator">投稿者</div>
-    <div class="status">ステータス</div>
-    <div class="date">
-      <time datetime="2022-04-25">Posted 10 hours ago</time>
-    </div>
-  </li>
-  </ul>
+    </a>
+  <% end %>
+  <%= paginate @ideas, theme: 'bootstrap-5'%>
 </div>
 
