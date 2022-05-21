@@ -20,4 +20,11 @@
   <%= @idea.user_id %>
 </p>
 
+<p>
+  <strong>いいねした人:</strong>
+  <% @idea.users.each do |user| %>
+    <%= user.name %>
+  <% end %>
+</p>
+
 <%= link_to 'Back', root_path %>
