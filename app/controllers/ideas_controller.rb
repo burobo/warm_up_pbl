@@ -21,9 +21,7 @@ class IdeasController < ApplicationController
 
   def favorite
     if @idea.user_id == current_user.id
-      respond_to do |format|
-        return redirect_to ({controller: :ideas, action: :show, id: @idea.id})
-      end
+      return redirect_to ({controller: :ideas, action: :show, id: @idea.id})
     end
     favorite = Favorite.where(user_id: current_user.id, idea_id: @idea.id).first
     if favorite == nil
@@ -34,9 +32,7 @@ class IdeasController < ApplicationController
     else
       favorite.destroy
     end
-    respond_to do |format|
-      format.html { redirect_to ({controller: :ideas, action: :show, id: @idea.id}), notice: "イイねしました。"}
-    end
+      return redirect_to ({controller: :ideas, action: :show, id: @idea.id}), notice: "イイねしました。"
   end
 
   # GET /ideas/1/edit
