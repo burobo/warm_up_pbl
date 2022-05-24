@@ -33,4 +33,16 @@
     <%= f.submit "イイね解除", class: "btn btn-primary" %>
   <% end %>
 <% end %>
+<p>
+  <strong>いいねした人:</strong>
+  <% @idea.users.each do |user| %>
+    <%= user.name %>
+  <% end %>
+</p>
+
+<p>
+  <strong>いいね数:</strong>
+  <%= @idea.favorites.size %>
+</p>
+
 <%= link_to 'Back', root_path %>
