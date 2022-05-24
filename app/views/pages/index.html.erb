@@ -10,7 +10,7 @@
 
 <div class ="ideas_container">
   <% @ideas.each do |idea| %>
-    <a href="ideas/<%= idea.id %>" class="card w-75 bg-light mx-auto m-3 text-decoration-none link-dark">
+    <a href="" onclick="window.location.href='ideas/<%= idea.id %>'" class="card w-75 bg-light mx-auto m-3 text-decoration-none link-dark">
       <div class="card-body">
         <div class="row p-1">
           <h5 class="card-title col-9"><%= idea.title %></h5>

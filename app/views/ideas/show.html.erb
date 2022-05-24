@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @idea.title %>
@@ -12,7 +10,11 @@
 
 <p>
   <strong>Detail:</strong>
-  <%= @idea.detail %>
+  <% if current_user != nil && (@idea.user_id == current_user.id || @idea.users.find_by_id(current_user.id) != nil) %>
+    <%= @idea.detail %>
+  <% else %>
+    ※イイねすると詳細を閲覧できます
+  <% end %>
 </p>
 
 <p>
@@ -20,6 +22,17 @@
   <%= @idea.user_id %>
 </p>
 
+<%= form_with model: @idea, url: "#{@idea.id}/favorite" , local: true, id: @idea.id, method: :put do |f| %>
+  <%= f.hidden_field :'id', :value => @idea.id %>
+  <% if current_user == nil %>
+    <%= f.submit "ログインしてイイねする", class: "btn btn-primary" %>
+  <% elsif @idea.user_id == current_user.id %>
+  <% elsif @idea.users.find_by_id(current_user.id) == nil %>
+    <%= f.submit "イイね", class: "btn btn-primary" %>
+  <% else %>
+    <%= f.submit "イイね解除", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
 <p>
   <strong>いいねした人:</strong>
   <% @idea.users.each do |user| %>

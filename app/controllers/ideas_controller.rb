@@ -1,5 +1,7 @@
+require 'pp'
+
 class IdeasController < ApplicationController
-  before_action :set_idea, only: %i[ show edit update destroy ]
+  before_action :set_idea, only: %i[ show edit update destroy favorite ]
   before_action :authenticate_user!, except: [:show, :index]
 
   # GET /ideas or /ideas.json
@@ -9,11 +11,31 @@ class IdeasController < ApplicationController
 
   # GET /ideas/1 or /ideas/1.json
   def show
+    logger.debug @idea.id
   end
 
   # GET /ideas/register
   def register
     @idea = Idea.new
+  end
+
+  def favorite
+    if @idea.user_id == current_user.id
+      return redirect_to ({controller: :ideas, action: :show, id: @idea.id})
+    end
+    favorite = Favorite.where(user_id: current_user.id, idea_id: @idea.id).first
+    message = ''
+    if favorite == nil
+      favorite = @idea.favorites.build()
+      favorite.user_id = current_user.id
+      favorite.idea_id = @idea.id
+      favorite.save
+      message = 'イイねしました。'
+    else
+      favorite.destroy
+      message = 'イイねを解除しました。'
+    end
+      return redirect_to ({controller: :ideas, action: :show, id: @idea.id}), notice: message
   end
 
   # GET /ideas/1/edit
@@ -26,7 +48,7 @@ class IdeasController < ApplicationController
     @idea.user_id = current_user.id
     respond_to do |format|
       if @idea.save
-        format.html { redirect_to controller: :ideas, action: :show, id: @idea.id, notice: "Idea was successfully created." }
+        format.html { redirect_to ({controller: :ideas, action: :show, id: @idea.id}), notice: "Idea was successfully created." }
         format.json { render :show, status: :created, location: @idea }
       else
         format.html { render :register, status: :unprocessable_entity }
