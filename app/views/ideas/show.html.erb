@@ -10,14 +10,11 @@
 
 <p>
   <strong>Detail:</strong>
-    <p>
-      <strong>Detail:</strong>
-      <% if current_user != nil && (@idea.user_id == current_user.id || @idea.users.find_by_id(current_user.id) != nil) %>
-        <%= @idea.detail %>
-      <% else %>
-        ※イイねすると詳細を閲覧できます
-      <% end %>
-    </p>
+  <% if current_user != nil && (@idea.user_id == current_user.id || @idea.users.find_by_id(current_user.id) != nil) %>
+    <%= @idea.detail %>
+  <% else %>
+    ※イイねすると詳細を閲覧できます
+  <% end %>
 </p>
 
 <p>

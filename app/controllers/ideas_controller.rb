@@ -24,15 +24,18 @@ class IdeasController < ApplicationController
       return redirect_to ({controller: :ideas, action: :show, id: @idea.id})
     end
     favorite = Favorite.where(user_id: current_user.id, idea_id: @idea.id).first
+    message = ''
     if favorite == nil
       favorite = @idea.favorites.build()
       favorite.user_id = current_user.id
       favorite.idea_id = @idea.id
       favorite.save
+      message = 'イイねしました。'
     else
       favorite.destroy
+      message = 'イイねを解除しました。'
     end
-      return redirect_to ({controller: :ideas, action: :show, id: @idea.id}), notice: "イイねしました。"
+      return redirect_to ({controller: :ideas, action: :show, id: @idea.id}), notice: message
   end
 
   # GET /ideas/1/edit
