@@ -49,6 +49,7 @@ class IdeasController < ApplicationController
   def create
     @idea = Idea.new(idea_params)
     @idea.user_id = current_user.id
+    @idea.images.attach(params[:idea][:images])
     respond_to do |format|
       if @idea.save
         format.html { redirect_to ({controller: :ideas, action: :show, id: @idea.id}), notice: "Idea was successfully created." }

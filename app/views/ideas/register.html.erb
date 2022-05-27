@@ -21,6 +21,9 @@
     <div class="mb-3">
       <%= render 'layouts/error_messages', model: form.object %>
     </div>
+    <div class="mb-3">
+      <%= form.file_field :images, multiple: true %>
+    </div>
     <!-- <div class="mb-3">
       <%= link_to "ファイルアップロード", "", class: "btn btn-outline-dark" %>
     </div>
