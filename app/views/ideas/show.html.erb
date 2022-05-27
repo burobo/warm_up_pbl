@@ -1,13 +1,10 @@
 <div class="text-center mt-5 mx-5">
-  <p>
-    No.<%= @idea.id %>
-  </p>
 
+  <h1 class="mb-4"><%= @idea.title %></h1>
+  
   <p class="text-end">
     発案者：<%= @idea.user.name %>
   </p>
-
-  <h1 class="mb-4"><%= @idea.title %></h1>
 
   <h2 class="mb-5"><%= @idea.outline %></h2>
 
