@@ -52,6 +52,72 @@ RSpec.describe "Ideas", type: :request do
     end
   end
 
+  describe "GET ideas/edit/:id" do
+    subject { get "/ideas/edit/#{idea.id}", params: params}
+    let(:idea) { create(:idea, title: title, outline: outline, detail: detail, user: user) }
+    let(:params) { { idea: {id: idea.id} } }
+    context "user is authenticated" do
+      let(:idea) {create(:idea, user: user)}
+      it "renders a successful response" do
+        sign_in user
+        subject
+        expect(response).to have_http_status(200)
+        expect(response).to be_successful
+      end
+      it  "edits a idea that is not mine" do
+        sign_in user2
+        subject
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(:ideas_show)
+      end
+    end
+    context "user is not authenticated" do
+      let(:idea) {create(:idea)}
+      it "redirect to sign in page" do
+        subject
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(:new_user_session)
+      end
+    end
+  end
+
+  describe "PUT /ideas/:id" do
+    subject { put "/ideas/#{idea.id}", params: params}
+    let(:idea) { create(:idea, title: title, outline: outline, detail: detail, user: user) }
+    let(:params) { { idea: {id: idea.id, title: "updated_title", outline: "updated_outline", detail: "updated_detail"} } }
+    context "user is authenticated" do
+      let(:idea) { create(:idea, user: user) }
+      it "normal" do
+        sign_in user
+        subject
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to ({controller: :ideas, action: :show, id: idea.id})
+        idea_updated = Idea.find(idea.id)
+        expect(idea_updated.title).to eq params[:idea][:title]
+        expect(idea_updated.outline).to eq params[:idea][:outline]
+        expect(idea_updated.detail).to eq params[:idea][:detail]
+      end
+      it "updates a idea that is not mine" do
+        sign_in user2
+        subject
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(:ideas_show)
+        idea_not_updated = Idea.find(idea.id)
+        expect(idea_not_updated.title).to_not eq params[:idea][:title]
+        expect(idea_not_updated.outline).to_not eq params[:idea][:outline]
+        expect(idea_not_updated.detail).to_not eq params[:idea][:detail]
+      end
+    end
+    context "user is not authenticated" do
+      let(:idea) { create(:idea, user: user) }
+      it "redirect to sign in page" do
+        subject
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(:new_user_session)
+      end
+    end
+  end
+
   describe "PUT /ideas/:id/favorite" do
     subject { put "/ideas/#{idea.id}/favorite", params: params}
     let(:idea) { create(:idea, title: title, outline: outline, detail: detail, user: user) }

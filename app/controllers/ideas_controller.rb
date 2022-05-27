@@ -39,8 +39,11 @@ class IdeasController < ApplicationController
   end
 
   # GET /ideas/1/edit
-  # def edit
-  # end
+  def edit
+    if @idea.user_id != current_user.id
+      redirect_to ({controller: :ideas, action: :show, id: @idea.id})
+    end
+  end
 
   # POST /ideas/register
   def create
@@ -58,17 +61,16 @@ class IdeasController < ApplicationController
   end
 
   # PATCH/PUT /ideas/1 or /ideas/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @idea.update(idea_params)
-  #       format.html { redirect_to idea_url(@idea), notice: "Idea was successfully updated." }
-  #       format.json { render :show, status: :ok, location: @idea }
-  #     else
-  #       format.html { render :edit, status: :unprocessable_entity }
-  #       format.json { render json: @idea.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+  def update
+    if @idea.user_id != current_user.id
+      return redirect_to ({controller: :ideas, action: :show, id: @idea.id})
+    end
+    if @idea.update(idea_params)
+      return redirect_to ({controller: :ideas, action: :show, id: @idea.id}), notice: "Idea was successfully updated."
+    else
+      return render :edit, status: :unprocessable_entity
+    end
+  end
 
   # DELETE /ideas/1 or /ideas/1.json
   # def destroy
