@@ -36,6 +36,7 @@ gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views', '~> 0.0.1'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
