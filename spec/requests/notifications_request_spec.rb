@@ -39,7 +39,6 @@ RSpec.describe "Notifications", type: :request do
 
     context "user is not authenticated" do
       it "redirect to sign in page" do
-        subject
         expect { subject }.not_to change { notification.reload.checked }
         expect(response).to redirect_to(:new_user_session)
       end
