@@ -33,7 +33,6 @@ RSpec.describe "Notifications", type: :request do
       end
       it do
         expect { subject }.to change { notification.reload.checked }.from(false).to(true)
-        byebug
         expect(response).to redirect_to(:notifications)
       end
     end
