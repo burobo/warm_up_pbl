@@ -1,0 +1,32 @@
+<div>
+  <% @notifications.each do |notification| %>
+    <a href="" onclick="window.location.href='ideas/<%= notification.favorited? ? notification.favorite.idea.id : '' %>'" class="card w-75 bg-light mx-auto m-3 text-decoration-none link-dark">
+      <div class="card-body">
+        <div class="row p-1">
+          <div class="h6 card-title col-9">
+          <% if notification.favorited? %>
+            <%= notification.favorite.idea.user.name %>が
+            <%= notification.favorite.idea.title %>をイイねしました。
+          <% end %>
+          </div>
+          <p class="card-text ps-3 col-3">
+          <% if notification.favorited? %>
+          <% end %>
+          <% if (Time.now.to_i - notification.created_at.to_i) <= 60 * 60 %>
+          <%= (Time.now.to_i - notification.created_at.to_i) / 60 %>
+          分前
+          <% elsif (Time.now.to_i - notification.created_at.to_i) <= 60 * 60 * 24 %>
+          <%= (Time.now.to_i - notification.created_at.to_i) / 60 / 60 %>
+          時間前
+          <% else %>
+          <%= (Time.now.to_i - notification.created_at.to_i) / 60 / 60 / 24 %>
+          日前
+          <% end %>
+          <% unless notification.checked? %>
+            ●
+          <% end %>
+        </div>
+      </div>
+    </a>
+  <% end %>
+</div>
