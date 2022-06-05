@@ -6,7 +6,7 @@ class Favorite < ApplicationRecord
 
   def create_notification_favorite(favorite)
     Notification.create!(
-      event: 0,
+      event: Notification.events[:favorited],
       favorite_id: favorite.id,
       user_id: favorite.idea.user.id
     )
