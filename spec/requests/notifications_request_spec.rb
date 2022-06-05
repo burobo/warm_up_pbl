@@ -25,7 +25,7 @@ RSpec.describe "Notifications", type: :request do
   describe "PATCH /notifications/:id" do
     subject { patch notification_path(notification)  }
 
-    let(:notification) { create :notification, event: 0, user: user}
+    let(:notification) { create :notification, event: Notification.events[:favorited], user: user}
 
     context "user is authenticated" do
       before do
