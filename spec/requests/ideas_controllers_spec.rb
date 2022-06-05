@@ -129,8 +129,11 @@ RSpec.describe "Ideas", type: :request do
         subject
         expect(response).to have_http_status(302)
         favorite_created = Favorite.last
+        notification_created = Notification.last
         expect(favorite_created.user_id).to eq user2.id
         expect(favorite_created.idea_id).to eq idea.id
+        expect(notification_created.user_id).to eq idea.user.id
+        expect(notification_created.favorite.idea_id).to eq idea.id
         expect(response).to redirect_to ({controller: :ideas, action: :show, id: idea.id})
       end
       it "favorites self idea" do
