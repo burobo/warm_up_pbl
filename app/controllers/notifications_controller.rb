@@ -1,5 +1,7 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_notification, only: :update
+
   def index
     @notifications = Notification
       .eager_load(favorite: :user)
@@ -8,5 +10,12 @@ class NotificationsController < ApplicationController
   end
 
   def update
+    @notification.update!(checked: true)
+  end
+
+  private
+
+  def set_notification
+    @notification = Notification.find(params[:id])
   end
 end
