@@ -5,7 +5,7 @@ class NotificationsController < ApplicationController
   def index
     @notifications = Notification
       .eager_load(favorite: :user)
-      .where(user_id: current_user.id)
+      .where(user_id: current_user.id, checked: false)
       .order(created_at: :desc)
   end
 
