@@ -5,7 +5,7 @@
         <div class="row p-1">
           <div class="h6 card-title col-9">
           <% if notification.favorited? %>
-            <%= notification.favorite.idea.user.name %>が
+            <%= notification.favorite.user.name %>が
             <%= notification.favorite.idea.title %>をイイねしました。
           <% end %>
           </div>

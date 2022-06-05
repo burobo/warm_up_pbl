@@ -30,6 +30,7 @@ class IdeasController < ApplicationController
       favorite.user_id = current_user.id
       favorite.idea_id = @idea.id
       favorite.save
+      favorite.create_notification_favorite(favorite)
       message = 'イイねしました。'
     else
       favorite.destroy
