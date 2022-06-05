@@ -11,6 +11,7 @@ class NotificationsController < ApplicationController
 
   def update
     @notification.update!(checked: true)
+    return redirect_to :notifications, notice: "通知を既読にしました。"
   end
 
   private
