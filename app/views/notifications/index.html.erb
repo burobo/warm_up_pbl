@@ -27,7 +27,7 @@
           </a>
           <p>
             <% unless notification.checked? %>
-              <%= button_to "既読にする", notification_path(notification), method: :patch %>
+              <%= button_to "既読にする", notification_path(notification), method: :patch, class: "btn btn-primary" %>
             <% end %>
           </p>
         </div>
