@@ -6,7 +6,7 @@
           <a href="" onclick="window.location.href='ideas/<%= notification.favorited? ? notification.favorite.idea.id : '' %>'" class="text-decoration-none link-dark">
             <div class="h6 card-title col-9">
               <% if notification.favorited? %>
-                <%= notification.favorite.idea.user.name %>が
+                <%= notification.favorite.user.name %>が
                 <%= notification.favorite.idea.title %>をイイねしました。
               <% end %>
             </div>
