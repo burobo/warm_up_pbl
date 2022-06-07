@@ -1,0 +1,38 @@
+<div>
+  <div class="mx-auto">
+    <h1 class="display-6 text-black text-center fw-bold">通知</h1>
+    <% @notifications.each do |notification| %>
+      <div class="card w-75 mx-auto m-3">
+        <div class="card-body">
+          <div class="p-1 row">
+            <a href="" onclick="window.location.href='ideas/<%= notification.favorited? ? notification.favorite.idea.id : '' %>'" class="text-decoration-none col-10">
+              <div class="h6 card-title">
+                <% if notification.favorited? %>
+                  <%= notification.favorite.user.name %>が
+                  <%= notification.favorite.idea.title %>をイイねしました。
+                <% end %>
+              </div>
+            </a>
+            <p class="card-text ps-3 col-2">
+              <% if notification.favorited? %>
+              <% end %>
+              <% if (Time.now.to_i - notification.created_at.to_i) <= 60 * 60 %>
+              <%= (Time.now.to_i - notification.created_at.to_i) / 60 %>
+              分前
+              <% elsif (Time.now.to_i - notification.created_at.to_i) <= 60 * 60 * 24 %>
+              <%= (Time.now.to_i - notification.created_at.to_i) / 60 / 60 %>
+              時間前
+              <% else %>
+              <%= (Time.now.to_i - notification.created_at.to_i) / 60 / 60 / 24 %>
+              日前
+              <% end %>
+            </p>
+            <% unless notification.checked? %>
+              <%= button_to "既読にする", notification_path(notification), method: :patch, class: "btn btn-outline-secondary btn-sm" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

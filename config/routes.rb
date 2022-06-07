@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   root to: 'pages#index'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   get 'pages/detail'
+  resources :notifications, only: [:index, :update]
 end
