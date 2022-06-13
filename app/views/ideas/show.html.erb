@@ -18,7 +18,7 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <% if current_user !=nil && (@idea.user_id==current_user.id || @idea.users.find_by_id(current_user.id) !=nil) %>
     <script>
-      document.getElementById('detail').innerHTML =  marked.parse('<%= @idea.detail%>');
+      document.getElementById('detail').innerHTML =  marked.parse('<%= @idea.detail.gsub(/\R/, "\\n")%>');
     </script>
   <% else %>
     <script>
