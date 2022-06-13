@@ -12,6 +12,7 @@ class IdeasController < ApplicationController
   # GET /ideas/1 or /ideas/1.json
   def show
     logger.debug @idea.id
+    @comment = Comment.new
   end
 
   # GET /ideas/register
