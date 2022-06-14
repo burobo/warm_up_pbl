@@ -15,3 +15,4 @@ Turbolinks.start()
 ActiveStorage.start()
 
 require('./hello_vue.js')
+require('./markdown_editor.js')
