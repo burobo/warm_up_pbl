@@ -3,9 +3,23 @@ import "easymde/dist/easymde.min.css";
 
 window.onload = function(){
   var easyMDE = new EasyMDE({
-    uploadImage: true,
-    imagePathAbsolute: true,
-    imageUploadEndpoint: '任意のエンドポイント',
+    spellChecker: false,
+    toolbar: [
+      'bold',
+      'italic',
+      'strikethrough',
+      'heading',
+      'code',
+      'quote',
+      'unordered-list',
+      'ordered-list',
+      'table',
+      'horizontal-rule',
+      'preview',
+    ],
+    // uploadImage: true,
+    // imagePathAbsolute: true,
+    // imageUploadEndpoint: '',
     element: document.getElementById('idea_detail')
   });
 };
