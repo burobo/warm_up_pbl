@@ -1,6 +1,5 @@
 <div class="container">
   <div class="text-center mt-5 mx-5">
-
     <h1 class="mb-4">
       <%= @idea.title %>
     </h1>
@@ -13,13 +12,19 @@
       <%= @idea.outline %>
     </h2>
 
-    <p>
-      <% if current_user !=nil && (@idea.user_id==current_user.id || @idea.users.find_by_id(current_user.id) !=nil) %>
-        <%= @idea.detail %>
-          <% else %>
-            ※イイねすると詳細を閲覧できます
-            <% end %>
-    </p>
+    <!-- 詳細 -->
+    <div id = "detail"></div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <% if current_user !=nil && (@idea.user_id==current_user.id || @idea.users.find_by_id(current_user.id) !=nil) %>
+      <script>
+        document.getElementById('detail').innerHTML =  marked.parse('<%= @idea.detail.gsub(/\R/, "\\n")%>');
+      </script>
+    <% else %>
+      <script>
+        document.getElementById('detail').remove();
+      </script>
+      <p>※イイねすると詳細を閲覧できます</p>
+    <% end %>
 
     <div class="d-flex align-items-center">
       <div class="d-flex me-2">
@@ -61,6 +66,7 @@
             <% end %>
       </div>
     </div>
+    
     <div class="text-start">
       <%= link_to 'Back' , root_path %>
     </div>

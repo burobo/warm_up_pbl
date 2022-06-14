@@ -32,6 +32,7 @@ class IdeasController < ApplicationController
       favorite.idea_id = @idea.id
       favorite.save
       favorite.create_notification_favorite(favorite)
+      NotificationMailer.with(notification: favorite.notification).idea_was_favorited.deliver_now
       message = 'イイねしました。'
     else
       favorite.destroy
