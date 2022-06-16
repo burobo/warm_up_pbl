@@ -13,6 +13,7 @@ class IdeasController < ApplicationController
   def show
     logger.debug @idea.id
     @comment = Comment.new
+    @favorite_user = @idea.users.find_by(id: current_user.id)
   end
 
   # GET /ideas/register
