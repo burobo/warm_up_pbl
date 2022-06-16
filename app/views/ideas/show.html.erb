@@ -76,7 +76,7 @@
     <div>
       <div>
         <% @idea.comments.each do |comment| %>
-          <div class="card w-75 mx-auto m-3">
+          <div class="card my-3">
             <div class="card-body">
               <div class="row p-2 border-bottom">
                 <div class="col-1 text-start">
@@ -111,7 +111,7 @@
             </div>
           </div>
         <% end %>
-        <div class="card w-75 mx-auto m-3 border-0">
+        <div class="card border-0 mb-3">
           <%= form_with model: [@idea, @comment], url: ideas_show_comments_path(@idea.id), method: :post do |f| %>
             <div class="form-group">
               <%= f.text_area :content, class: "form-control", placeholder: "コメントを入力", rows: "6" %>
