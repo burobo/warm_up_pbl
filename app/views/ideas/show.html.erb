@@ -70,9 +70,11 @@
     <div class="text-start">
       <%= link_to 'Back' , root_path %>
     </div>
-    <div class="text-start">
-      <%= link_to '編集' , ideas_edit_path(@idea.id) %>
-    </div>
+    <% if @idea.user == current_user %>
+      <div class="text-start">
+        <%= link_to '編集' , ideas_edit_path(@idea.id) %>
+      </div>
+    <% end %>
     <div>
       <div>
         <% @idea.comments.each do |comment| %>
