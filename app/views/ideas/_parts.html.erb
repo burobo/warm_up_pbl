@@ -39,6 +39,6 @@
   </div>
 </div>
 <%= link_to 'Back' , root_path %>
-<% if @idea.user == current_user %>
+<% if idea.user == current_user %>
   <%= link_to '編集' , ideas_edit_path(idea.id) %>
 <% end %>
