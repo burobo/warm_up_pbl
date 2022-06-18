@@ -1,28 +1,26 @@
 <div class="container">
-  <div class="text-center mt-5 mx-5">
+  <div class="mt-5 mx-5">
+    <p>
+      発案者：<%= @idea.user.name %>
+    </p>
     <h1 class="mb-4">
       <%= @idea.title %>
     </h1>
-
-    <p class="text-end">
-      発案者：<%= @idea.user.name %>
-    </p>
-
     <h2 class="mb-5">
       <%= @idea.outline %>
     </h2>
 
     <!-- 詳細 -->
-    <div id = "detail"></div>
+    <div id = "detail" class="mb-4"></div>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <% if current_user !=nil && (@idea.user_id==current_user.id || @idea.users.find_by_id(current_user.id) !=nil) %>
       <script>
         document.getElementById('detail').innerHTML =  marked.parse('<%= @idea.detail.gsub(/\R/, "\\n")%>');
       </script>
       <%= render 'ideas/parts', idea: @idea %>
-      <div>
+      <div class="text-center">
         <% @idea.comments.each do |comment| %>
-          <div class="card w-75 mx-auto m-3">
+          <div class="card my-3">
             <div class="card-body">
               <div class="row p-2 border-bottom">
                 <div class="col-1 text-start">
@@ -47,27 +45,27 @@
                   <% end %>
                 </p>
               </div>
-              <div class="row m-2">
-                <div class="col-1">
-                </div>
-                <div class="col-11 text-start">
-                  <%= comment.content %>
-                </div>
+            </div>
+            <div class="row m-2">
+              <div class="col-1">
+              </div>
+              <div class="col-11 text-start">
+                <%= comment.content %>
               </div>
             </div>
           </div>
         <% end %>
-        <div class="card w-75 mx-auto m-3 border-0">
-          <%= form_with model: [@idea, @comment], url: ideas_show_comments_path(@idea.id), method: :post do |f| %>
-            <div class="form-group">
-              <%= f.text_area :content, class: "form-control", placeholder: "コメントを入力", rows: "6" %>
-              <%= f.hidden_field :idea_id, value: @idea.id %>
-            </div>
-            <div class="text-end mt-2">
-              <%= f.submit "投稿する", class: "w-25 btn btn-primary", disable_with: '投稿中...' %>
-            </div>
-          <% end %>
-        </div>
+      </div>
+      <div class="card border-0 my-3">
+        <%= form_with model: [@idea, @comment], url: ideas_show_comments_path(@idea.id), method: :post do |f| %>
+          <div class="form-group">
+            <%= f.text_area :content, class: "form-control", placeholder: "コメントを入力", rows: "6" %>
+            <%= f.hidden_field :idea_id, value: @idea.id %>
+          </div>
+          <div class="text-end mt-2">
+            <%= f.submit "投稿する", class: "w-25 btn btn-primary", disable_with: '投稿中...' %>
+          </div>
+        <% end %>
       </div>
     <% else %>
       <script>
