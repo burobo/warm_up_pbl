@@ -31,7 +31,7 @@ RSpec.describe "Comments", type: :request do
 
       it do
         expect { subject }.not_to change(Comment, :count)
-        expect(response).to redirect_to headers[:HTTP_REFERER]
+        expect(response).to have_http_status(204)
       end
     end
   end
