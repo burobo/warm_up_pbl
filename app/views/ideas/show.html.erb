@@ -1,19 +1,17 @@
 <div class="container">
-  <div class="text-center mt-5 mx-5">
+  <div class="mt-5 mx-5">
+    <p>
+      発案者：<%= @idea.user.name %>
+    </p>
     <h1 class="mb-4">
       <%= @idea.title %>
     </h1>
-
-    <p class="text-end">
-      発案者：<%= @idea.user.name %>
-    </p>
-
     <h2 class="mb-5">
       <%= @idea.outline %>
     </h2>
 
     <!-- 詳細 -->
-    <div id = "detail"></div>
+    <div id = "detail" class="mb-4"></div>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <% if current_user !=nil && (@idea.user_id==current_user.id || @idea.users.find_by_id(current_user.id) !=nil) %>
       <script>
