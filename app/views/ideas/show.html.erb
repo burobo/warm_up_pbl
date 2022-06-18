@@ -65,13 +65,9 @@
       </div>
     </div>
     
-    <div class="text-start">
-      <%= link_to 'Back' , root_path %>
-    </div>
+    <%= link_to 'Back' , root_path %>
     <% if @idea.user == current_user %>
-      <div class="text-start">
-        <%= link_to '編集' , ideas_edit_path(@idea.id) %>
-      </div>
+      <%= link_to '編集' , ideas_edit_path(@idea.id) %>
     <% end %>
     <div class="text-center">
       <% @idea.comments.each do |comment| %>
