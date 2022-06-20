@@ -1,5 +1,5 @@
 <div class="card h-100">
-  <img class="bd-placeholder-img bd-placeholder-img-lg card-img" src="https://placehold.jp/1800x400.png">
+  <%= image_tag 'about/header.png', class: "bd-placeholder-img bd-placeholder-img-lg card-img" %>
   <div class="card-img-overlay h-100 align-items-center d-flex justify-content-center text-white fs-1">
     アイディアファームで、アイディアをカタチにしよう！
   </div>
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="text-center mt-5">
-      <%= image_tag 'about/service_outline.png' %>
+      <%= image_tag 'about/service_outline.png', class:"img-fluid"%>
     </div>
   </div>
   <div class="mt-5">
@@ -26,11 +26,11 @@
       こんな方に向けたサービスです
     </div>
     <div class="row">
-      <div class="col-6 row">
-        <div class="col-6">
-          <img class="float-end" src="https://placehold.jp/200x200.png">
+      <div class="col-lg-6 row">
+        <div class="col-lg-6">
+          <%= image_tag 'about/originator_edit.jpg', class: "d-block mx-auto w-75" %>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6">
           <div class="text-success fs-6 fw-bold m-2">
             発案者
           </div>
@@ -39,11 +39,11 @@
           </div>
         </div>
       </div>
-      <div class="col-6 row">
-        <div class="col-6">
-          <img class="float-end" src="https://placehold.jp/200x200.png">
+      <div class="col-lg-6 row">
+        <div class="col-lg-6">
+          <%= image_tag 'about/implementor_edit.jpg', class: "d-block mx-auto w-75" %>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6">
           <div class="text-success fs-6 fw-bold m-2">
             実装者
           </div>
@@ -62,8 +62,8 @@
       導入のメリット
     </div>
     <div class="row">
-      <div class="col-4">
-        <img class="d-block mx-auto" src="https://placehold.jp/200x200.png">
+      <div class="col-lg-4">
+        <%= image_tag 'about/positive-vote.png', class: "d-block mx-auto w-50" %>
         <div class="text-center fs-6 fw-bold m-2">
           イイね機能
         </div>
@@ -71,8 +71,8 @@
           発案者はイイねの数でアイデアの注目度が分かる
         </div>
       </div>
-      <div class="col-4">
-        <img class="d-block mx-auto" src="https://placehold.jp/200x200.png">
+      <div class="col-lg-4">
+        <%= image_tag 'about/chat.png', class: "d-block mx-auto w-50" %>
         <div class="text-center fs-6 fw-bold m-2">
           コミュニケーション機能
         </div>
@@ -80,8 +80,8 @@
           発案者と実装者とのメッセージのやり取りが可能
         </div>
       </div>
-      <div class="col-4">
-        <img class="d-block mx-auto" src="https://placehold.jp/200x200.png">
+      <div class="col-lg-4">
+        <%= image_tag 'about/desktop.png', class: "d-block mx-auto w-50" %>
         <div class="text-center fs-6 fw-bold m-2">
           アイデア登録補助機能
         </div>
