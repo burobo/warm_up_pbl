@@ -1,82 +1,26 @@
 <div class="container">
-  <div class="text-center mt-5 mx-5">
+  <div class="mt-5 mx-5">
+    <p>
+      発案者：<%= @idea.user.name %>
+    </p>
     <h1 class="mb-4">
       <%= @idea.title %>
     </h1>
-
-    <p class="text-end">
-      発案者：<%= @idea.user.name %>
-    </p>
-
     <h2 class="mb-5">
       <%= @idea.outline %>
     </h2>
 
     <!-- 詳細 -->
-    <div id = "detail"></div>
+    <div id = "detail" class="mb-4"></div>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <% if current_user !=nil && (@idea.user_id==current_user.id || @idea.users.find_by_id(current_user.id) !=nil) %>
       <script>
         document.getElementById('detail').innerHTML =  marked.parse('<%= @idea.detail.gsub(/\R/, "\\n")%>');
       </script>
-    <% else %>
-      <script>
-        document.getElementById('detail').remove();
-      </script>
-      <p>※イイねすると詳細を閲覧できます</p>
-    <% end %>
-
-    <div class="d-flex align-items-center">
-      <div class="d-flex me-2">
-        <%= form_with model: @idea, url: "#{@idea.id}/favorite" , local: true, id: @idea.id, method: :put do |f| %>
-          <%= f.hidden_field :'id', :value=> @idea.id %>
-            <% if current_user==nil %>
-              <%= button_tag type: 'submit' , class: 'unlike me-1' do %>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                </svg>
-                <% end %>
-            <% elsif @idea.user_id==current_user.id %>
-            <% elsif @idea.users.find_by_id(current_user.id)==nil %>
-              <%= button_tag type: 'submit' , class: 'unlike me-1' do %>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-heart" viewBox="0 0 16 16">
-                <path
-                  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-              </svg>
-              <% end %>
-            <% else %>
-              <%= button_tag type: 'submit' , class: 'like me-1' do %>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-heart" viewBox="0 0 16 16">
-                  <path
-                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                </svg>
-              <% end %>
-            <% end %>
-          <% end %>
-        <%= @idea.favorites.size %>
-      </div>
-      <div>
-        イイねした人:
-        <% @idea.users.each do |user| %>
-          <%= user.name %>
-            <% end %>
-      </div>
-    </div>
-    
-    <div class="text-start">
-      <%= link_to 'Back' , root_path %>
-    </div>
-    <div class="text-start">
-      <%= link_to '編集' , ideas_edit_path(@idea.id) %>
-    </div>
-    <div>
-      <div>
+      <%= render 'ideas/parts', idea: @idea %>
+      <div class="text-center">
         <% @idea.comments.each do |comment| %>
-          <div class="card w-75 mx-auto m-3">
+          <div class="card my-3">
             <div class="card-body">
               <div class="row p-2 border-bottom">
                 <div class="col-1 text-start">
@@ -101,28 +45,34 @@
                   <% end %>
                 </p>
               </div>
-              <div class="row m-2">
-                <div class="col-1">
-                </div>
-                <div class="col-11 text-start">
-                  <%= comment.content %>
-                </div>
+            </div>
+            <div class="row m-2">
+              <div class="col-1">
+              </div>
+              <div class="col-11 text-start">
+                <%= comment.content %>
               </div>
             </div>
           </div>
         <% end %>
-        <div class="card w-75 mx-auto m-3 border-0">
-          <%= form_with model: [@idea, @comment], url: ideas_show_comments_path(@idea.id), method: :post do |f| %>
-            <div class="form-group">
-              <%= f.text_area :content, class: "form-control", placeholder: "コメントを入力", rows: "6" %>
-              <%= f.hidden_field :idea_id, value: @idea.id %>
-            </div>
-            <div class="text-end mt-2">
-              <%= f.submit "投稿する", class: "w-25 btn btn-primary", disable_with: '投稿中...' %>
-            </div>
-          <% end %>
-        </div>
       </div>
-    </div>
+      <div class="card border-0 my-3">
+        <%= form_with model: [@idea, @comment], url: ideas_show_comments_path(@idea.id), method: :post do |f| %>
+          <div class="form-group">
+            <%= f.text_area :content, class: "form-control", placeholder: "コメントを入力", rows: "6" %>
+            <%= f.hidden_field :idea_id, value: @idea.id %>
+          </div>
+          <div class="text-end mt-2">
+            <%= f.submit "投稿する", class: "w-25 btn btn-primary", disable_with: '投稿中...' %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <script>
+        document.getElementById('detail').remove();
+      </script>
+      <p>※イイねすると詳細を閲覧できます</p>
+      <%= render 'ideas/parts', idea: @idea %>
+    <% end %>
   </div>
 </div>

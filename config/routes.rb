@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'about' => 'static_pages#about', as: :about
   get 'ideas/register', 'ideas#register'
   post 'ideas/register' => 'ideas#create'
   get 'ideas/edit/:id' => 'ideas#edit', as: :ideas_edit
