@@ -13,6 +13,13 @@
     <!-- 詳細 -->
     <div id = "detail" class="mb-4"></div>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <div class="fb-share-button" data-href="https://warmuppbl.herokuapp.com/ideas/<%= @idea.id %>" data-layout="button" data-size="large">
+      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwarmuppbl.herokuapp.com%2Fideas%2F24&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+        シェアする
+      </a>
+    </div>
+    <br>
+    <br>
     <% if current_user !=nil && (@idea.user_id==current_user.id || @idea.users.find_by_id(current_user.id) !=nil) %>
       <script>
         document.getElementById('detail').innerHTML =  marked.parse('<%= @idea.detail.gsub(/\R/, "\\n")%>');
