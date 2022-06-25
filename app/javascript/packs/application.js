@@ -7,6 +7,8 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import "jquery"
+import "popper.js";
 import "bootstrap";
 import "../stylesheets/application.scss";
 
@@ -16,3 +18,4 @@ ActiveStorage.start()
 
 require('./hello_vue.js')
 require('./markdown_editor.js')
+require('./init_bootstrap_components.js')
