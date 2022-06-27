@@ -45,7 +45,17 @@
         </ul>
       </div>
     </nav>
-    <p class="notice"><%= notice %></p>
     <%= yield %>
+    <% if notice %>
+    <div id="notice-modal" class="modal fade" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <%= notice %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
   </body>
 </html>
