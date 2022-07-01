@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   get 'pages/detail'
   resources :notifications, only: [:index, :update]
+  get 'users/password', to: redirect("/")
 end

@@ -55,7 +55,7 @@ class IdeasController < ApplicationController
     @idea.images.attach(params[:idea][:images])
     respond_to do |format|
       if @idea.save
-        format.html { redirect_to ({controller: :ideas, action: :show, id: @idea.id}), notice: "Idea was successfully created." }
+        format.html { redirect_to ({controller: :ideas, action: :show, id: @idea.id}), notice: "アイデアを作成しました。" }
         format.json { render :show, status: :created, location: @idea }
       else
         format.html { render :register, status: :unprocessable_entity }
