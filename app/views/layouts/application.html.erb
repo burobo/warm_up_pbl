@@ -18,42 +18,41 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v14.0&appId=522684069319655&autoLogAppEvents=1" nonce="Kie28uVE"></script>
     <!-- <div id="js-hello-vue"></div> -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3 p-2">
-      <%= link_to image_tag("buds.png", size: "32x32", class: "navbar-brand"), root_path %>
-      <% if user_signed_in? %>
-        <%= link_to  image_tag("bell.svg"), notifications_path%>
-      <% end %>
-      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <header class="position-relative bg-dark mb-3">
+      <div class="d-flex justify-content-between align-items-center px-3">
+        <%= link_to image_tag("buds.png", size: "32x32", class: "navbar-brand"), root_path %>
 
-      <div class="collapse navbar-collapse justify-content-end" id="Navber">
-        <ul class="navbar-nav mt-2 mb-2">
+        <ul class="d-flex align-items-center pt-3">
           <% if user_signed_in? %>
-            <ul class="navbar-nav">
-              <li class="nav-item dropdown me-3">
-                <span class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <%= current_user.name %>
-                </span>
-                <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
-                </ul>
-              </li>
-            </ul>
-            <li class="nav-item">
-              <%= link_to "アイデア登録", ideas_register_path, method: :get, class: "nav-link border rounded me-3" %>
+            <li class="me-3">
+              <%= link_to  image_tag("bell.svg"), notifications_path%>
+            </li>
+            <li class="me-3">
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                  <span class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <%= current_user.name %>
+                  </span>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <%= link_to "アイデア登録", ideas_register_path, method: :get, class: "nav-link border rounded" %>
             </li>
           <% else %>
-            <li class="nav-item">
+            <li>
               <%= link_to "サインイン", new_user_session_path, class: "nav-link me-3 border rounded" %>
             </li>
-            <li class="nav-item">
+            <li>
               <%= link_to "サインアップ", new_user_registration_path, class: "nav-link border rounded" %>
             </li>
           <% end %>
         </ul>
       </div>
-    </nav>
+    </header>
     <%= yield %>
     <% if notice %>
     <div id="notice-modal" class="modal fade" tabindex="-1" aria-hidden="true">
