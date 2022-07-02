@@ -38,7 +38,7 @@
         <% end %>
   </div>
 </div>
-<%= link_to 'Back' , root_path %>
+<%= link_to 'Back' , root_path , class: "text-decoration-underline-hover" %>
 <% if idea.user == current_user %>
-  <%= link_to '編集' , ideas_edit_path(idea.id) %>
+  <%= link_to '編集' , ideas_edit_path(idea.id) , class: "text-decoration-underline-hover" %>
 <% end %>
