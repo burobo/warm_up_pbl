@@ -87,7 +87,14 @@
       <script>
         document.getElementById('detail').remove();
       </script>
-      <p>※イイねすると詳細を閲覧できます</p>
+      <div class="border border-1 border-warning w-50 mb-3">
+        <ul class="list-unstyled p-2 mb-1">
+          <li class="fw-bold">イイね機能について</li>
+          <li>イイねすると詳細を閲覧できます。</li>
+          <li>イイねすると取り消すことはできません。</li>
+          <li>ボタン右横のイイねした人の  一覧に名前が表示されます。</li>
+        </ul>
+      </div>
       <%= render 'ideas/parts', idea: @idea %>
     <% end %>
   </div>
