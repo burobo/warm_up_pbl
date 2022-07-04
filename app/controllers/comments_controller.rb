@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   def create
     idea = Idea.find(comments_params[:idea_id])
     comment = current_user.comments.new(comments_params)
-    if current_user == idea.users.find_by(id: current_user.id)
+    if idea.user == current_user || current_user == idea.users.find_by(id: current_user.id)
       if comment.save
         redirect_to request.referer, notice: "コメントを投稿しました。"
       else
