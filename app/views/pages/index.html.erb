@@ -12,7 +12,7 @@
     <a href="" onclick="window.location.href='ideas/<%= idea.id %>'" class="card w-75 bg-light mx-auto m-3 text-decoration-none link-dark">
       <div class="card-body">
         <div class="row p-1">
-          <h5 class="card-title col-9"><%= idea.title %></h5>
+          <h5 class="card-title col-9 text-decoration-underline-hover"><%= idea.title %></h5>
           <p class="card-text ps-3 col-3">
           最終更新:
           <% if (Time.now.to_i - idea.updated_at.to_i) <= 60 * 60 %>

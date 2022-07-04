@@ -1,11 +1,4 @@
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-<meta property="og:title" content="<%= @idea.title %> 発案者：<%= @idea.user.name %>" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="<%= request.url %>" />
-<meta property="og:image" content="<%= image_url("top_hands.jpg") %>" />
-<meta property="og:site_name" content="アイデアファーム supported by AIIT 中鉢PT" />
-<meta property="og:description" content="アイディアファームはアイディアとスキルをマッチングさせ、アイディアを実現させるサービスです。" />
-<meta property="fb:app_id" content="<%= ENV['FACEBOOK_KEY'] %>" />
+<% set_meta_tags title: @idea.title, og: { title: "#{@idea.title} 発案者：#{@idea.user.name}", type: 'article' } %>
 
 <div class="container">
   <div class="mt-5 mx-5">
@@ -87,7 +80,14 @@
       <script>
         document.getElementById('detail').remove();
       </script>
-      <p>※イイねすると詳細を閲覧できます</p>
+      <div class="border border-1 border-warning w-50 mb-3">
+        <ul class="list-unstyled p-2 mb-1">
+          <li class="fw-bold">イイね機能について</li>
+          <li>イイねすると詳細を閲覧できます。</li>
+          <li>イイねすると取り消すことはできません。</li>
+          <li>ボタン右横のイイねした人の  一覧に名前が表示されます。</li>
+        </ul>
+      </div>
       <%= render 'ideas/parts', idea: @idea %>
     <% end %>
   </div>

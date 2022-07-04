@@ -20,7 +20,7 @@
           </svg>
           <% end %>
         <% else %>
-          <%= button_tag type: 'submit' , class: 'like me-1' do %>
+          <%= button_tag type: 'submit' , class: 'like me-1', disabled:'true' do %>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
               class="bi bi-heart" viewBox="0 0 16 16">
               <path
@@ -38,7 +38,7 @@
         <% end %>
   </div>
 </div>
-<%= link_to 'Back' , root_path %>
+<%= link_to 'Back' , root_path , class: "text-decoration-underline-hover" %>
 <% if idea.user == current_user %>
-  <%= link_to '編集' , ideas_edit_path(idea.id) %>
+  <%= link_to '編集' , ideas_edit_path(idea.id) , class: "text-decoration-underline-hover" %>
 <% end %>

@@ -34,5 +34,14 @@ RSpec.describe "Comments", type: :request do
         expect(response).to have_http_status(204)
       end
     end
+
+    context "When originator makes comment" do
+      let(:idea) { create :idea, user: user }
+
+      it do
+        expect { subject }.to change(Comment, :count).by(1)
+        expect(response).to redirect_to headers[:HTTP_REFERER]
+      end
+    end
   end
 end
