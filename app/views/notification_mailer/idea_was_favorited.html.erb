@@ -1,2 +1,5 @@
-アイデアがイイねされました。
-<%= link_to @notification.favorite.idea.title , ideas_show_url(@notification.favorite.idea.id) %>
+あなたのアイデアがイイねされました！<br>
+アイデアの詳細を確認しましょう！<br>
+<br>
+タイトル：<%= link_to @notification.favorite.idea.title , ideas_show_url(@notification.favorite.idea.id) %> <br>
+イイねした人：<%= @notification.favorite.user.name %>
