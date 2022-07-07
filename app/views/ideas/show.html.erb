@@ -11,7 +11,18 @@
     <h2 class="mb-5">
       <%= @idea.outline %>
     </h2>
-
+    <% if @idea.images.attached? %>
+      <% @idea.images.each do |image| %>
+        <% if image.representable? %>
+          <%= image_tag image %> <br>
+        <% else %>
+          <%= link_to rails_blob_path(image, disposition: "attachment") do %>
+            <%= image_tag "download.png", alt: "Download file" %> <br>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <br>
     <!-- 詳細 -->
     <div id = "detail" class="mb-4"></div>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
