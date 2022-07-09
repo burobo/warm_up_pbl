@@ -16,4 +16,5 @@ ActiveStorage.start()
 
 require('./hello_vue.js')
 require('./markdown_editor.js')
+require('./emoji_button.js')
 require('./init_components.js')
