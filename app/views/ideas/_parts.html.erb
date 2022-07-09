@@ -12,20 +12,20 @@
             <%= content_tag :string, '見せて！' %>
           <% end %>
         <% else %>
-          <%= button_tag type: 'submit' , class: 'btn btn-success btn-sm', disabled:'true' do %>
-            <%= content_tag :string, '見せて！' %>
-          <% end %>
         <% end %>
       <% end %>
-    <%= idea.favorites.size %>
-  </div>
-  <div>
-    見せて！した人:
-    <% idea.users.each do |user| %>
-      <%= user.name %>
-        <% end %>
   </div>
 </div>
+<div>
+  見せて！された回数： <%= idea.favorites.size %>
+</div>
+<div>
+  見せて！した人：
+  <% idea.users.each do |user| %>
+    <%= user.name %>
+      <% end %>
+</div>
+
 <%= link_to 'Back' , root_path , class: "text-decoration-underline-hover" %>
 <% if idea.user == current_user %>
   <%= link_to '編集' , ideas_edit_path(idea.id) , class: "text-decoration-underline-hover" %>
