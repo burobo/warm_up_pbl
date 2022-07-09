@@ -953,6 +953,13 @@
     "mkdirp" "^1.0.4"
     "rimraf" "^3.0.2"
 
+"@picmo/popup-picker@^5.2.0":
+  "integrity" "sha512-PXOrJgZC/tXv0Vg+Rzt1numEQc9A2D3oUXOUInVBRjVyJdmVuYReTtrGg1j4VyFPzjMSriSuEhBmov/2W7jzqA=="
+  "resolved" "https://registry.npmjs.org/@picmo/popup-picker/-/popup-picker-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@popperjs/core" "^2.11.5"
+
 "@popperjs/core@^2.10.2", "@popperjs/core@^2.11.5":
   "integrity" "sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw=="
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.5.tgz"
@@ -4990,7 +4997,7 @@
     "safe-buffer" "^5.0.1"
     "sha.js" "^2.4.8"
 
-"picmo@^5.2.0":
+"picmo@^5.0.1", "picmo@^5.2.0":
   "integrity" "sha512-uP06Uy5KiG6jdZZxW1KWNi9GqYLFRBZvRSP/OULuawBUQqhYoivI+IkpSjmElBkUi7Mqm8Ecpnt7kQJsPSRcRg=="
   "resolved" "https://registry.npmjs.org/picmo/-/picmo-5.2.0.tgz"
   "version" "5.2.0"
