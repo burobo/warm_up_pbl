@@ -33,7 +33,7 @@ class IdeasController < ApplicationController
       favorite.save
       favorite.create_notification_favorite(favorite)
       NotificationMailer.with(notification: favorite.notification).idea_was_favorited.deliver_now
-      message = 'イイねしました。'
+      message = '見せて！しました。'
     end
       return redirect_to ({controller: :ideas, action: :show, id: @idea.id}), notice: message
   end
