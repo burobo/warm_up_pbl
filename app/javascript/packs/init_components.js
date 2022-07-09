@@ -1,12 +1,24 @@
 import { Modal } from 'bootstrap'
 
 document.addEventListener("turbolinks:load", () => {
-    showNoticeModal()
+    const noticeModal = new NoticeModal()
+    noticeModal.show()
+    setTimeout(() => noticeModal.hide(), 2000)
   }
 )
 
-// フラッシュメッセージが記載されたmodalを表示する
-function showNoticeModal() {
-    const noticeModal = new Modal(document.getElementById('notice-modal'))
-    noticeModal.show()
+class NoticeModal {
+  constructor() {
+    this._modal = new Modal(document.getElementById('notice-modal'));
+  }
+  
+  // フラッシュメッセージが記載されたmodalを表示する
+  show() {
+    this._modal.show()
+  }
+  
+  // フラッシュメッセージが記載されたmodalを非表示する
+  hide() {
+    this._modal.hide()
+  }
 }
