@@ -4,5 +4,6 @@ FactoryBot.define do
     outline { "MyText" }
     detail { "MyText" }
     user
+    emoji { "😀" }
   end
 end
