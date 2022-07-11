@@ -1,7 +1,7 @@
 import * as EasyMDE from 'easymde';
 import "easymde/dist/easymde.min.css";
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener("turbolinks:load", function() {
   var easyMDE = new EasyMDE({
     spellChecker: false,
     toolbar: [
