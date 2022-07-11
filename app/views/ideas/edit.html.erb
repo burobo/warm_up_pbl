@@ -5,8 +5,7 @@
     <div class="row">
       <div class="form-group col-md-8 mb-3">
         <label class="form-label h4">アイキャッチ絵文字</label>
-        <%= form.hidden_field :'emoji', :id => "emoji_field" , :value => "" %>
-        <%= form.hidden_field :'init_emoji', :id => "init_emoji" , :value => @idea.emoji %>
+        <%= form.hidden_field :'emoji', :id => "emoji_field" , :value => @idea.emoji %>
         <div class="pickerContainer"></div>
       </div>
     </div>

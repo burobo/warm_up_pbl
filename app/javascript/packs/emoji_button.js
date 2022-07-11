@@ -4,25 +4,40 @@ import messages from 'emojibase-data/en/messages.json';
 
 window.addEventListener("turbolinks:load", function() {
   // 既存の絵文字取得
-  const initEmojiElem = document.getElementById('init_emoji');
+  const initEmojiElem = document.getElementById('emoji_field');
   let initEmoji = '🌱';
   const categories = [
     'smileys-emotion' ,
     'people-body' ,
+    '',
     'animals-nature' ,
     'food-drink' ,
     'travel-places',
     'activities' ,
-    'symbols' ,
     'objects' ,
+    'symbols' ,
     'flags' ,
-    'custom'
+    'custom',
+    'recents'
   ];
 
   if (initEmojiElem !== null && initEmojiElem.value.length !== 0){
     initEmoji = initEmojiElem.value;
   }
-  const initCategory = categories[emojiData.find((record) => record.emoji === initEmoji).group];
+  const initCategory = categories[emojiData.find(
+    record => {
+      if(record.emoji === initEmoji) {
+        return true;
+      }
+      if(typeof record.skins !== 'undefined') {
+        if (record.skins.find(skinsRecord => skinsRecord.emoji === initEmoji)) {
+          return true;
+        }
+      }
+      return false;
+    }
+  ).group];
+  console.log(initCategory);
 
   // emojipicker生成
   const container = document.querySelector('.pickerContainer');
