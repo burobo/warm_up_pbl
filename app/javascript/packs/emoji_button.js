@@ -4,7 +4,12 @@ import messages from 'emojibase-data/en/messages.json';
 
 window.addEventListener("turbolinks:load", function() {
   // 既存の絵文字取得
-  const initEmoji = document.getElementById('init_emoji').value;
+  const initEmojiElem = document.getElementById('init_emoji');
+  let initEmoji = "😀";
+  if (initEmojiElem !== null){
+    initEmoji = initEmojiElem.value;
+  }
+
   // emojipicker生成
   const container = document.querySelector('.pickerContainer');
   const picker = createPicker({
