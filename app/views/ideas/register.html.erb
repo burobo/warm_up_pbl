@@ -3,6 +3,13 @@
 <div class="container">
   <%= form_with model: @idea, url: "/ideas/register", method: :post, role: "form" do |form|%>
     <div class="row">
+      <div class="form-group col-md-8 mb-3">
+        <label class="form-label h4">アイキャッチ絵文字</label>
+        <%= form.hidden_field :'emoji', :id => "emoji_field" , :value => "" %>
+        <div class="pickerContainer"></div>
+      </div>
+    </div>
+    <div class="row">
       <div class="form-group col-md-6 mb-3">
         <label for="idea_title" class="form-label h4">タイトル</label>
         <%= form.text_field :'title', :class => "form-control", :placeholder => "タイトルを入力"%>
@@ -57,13 +64,6 @@
         </div>
       </div>
     </div> -->
-    <div class="row">
-      <div class="form-group col-md-8 mb-3">
-        <label class="form-label h4">アイキャッチ絵文字</label>
-        <%= form.hidden_field :'emoji', :id => "emoji_field" , :value => "" %>
-        <div class="pickerContainer"></div>
-      </div>
-    </div>
     <div>
       <%= form.submit "投稿する", class: "btn btn-primary"%>
     </div>
