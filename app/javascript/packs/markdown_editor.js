@@ -1,7 +1,7 @@
 import * as EasyMDE from 'easymde';
 import "easymde/dist/easymde.min.css";
 
-window.onload = function(){
+window.addEventListener('DOMContentLoaded', function() {
   var easyMDE = new EasyMDE({
     spellChecker: false,
     toolbar: [
@@ -22,4 +22,4 @@ window.onload = function(){
     // imageUploadEndpoint: '',
     element: document.getElementById('idea_detail')
   });
-};
+});

@@ -1,6 +1,6 @@
 import { createPicker } from 'picmo';
 
-window.onload = function () {
+window.addEventListener('load', function() {
   // emojipicker生成
   const container = document.querySelector('.pickerContainer');
   const picker = createPicker({
@@ -11,4 +11,4 @@ window.onload = function () {
   picker.addEventListener('emoji:select', event => {
     document.getElementById('emoji_field').value = event.emoji;
   });
-};
+});
