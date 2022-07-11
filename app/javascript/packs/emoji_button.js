@@ -7,7 +7,6 @@ window.addEventListener("turbolinks:load", function() {
   const initEmojiElem = document.getElementById('init_emoji');
   let initEmoji = '🌱';
   const categories = [
-    'recents',
     'smileys-emotion' ,
     'people-body' ,
     'animals-nature' ,
@@ -32,6 +31,7 @@ window.addEventListener("turbolinks:load", function() {
     emojiData,
     messages,
     showCategoryTabs:true,
+    showRecents:false,
     initialCategory:initCategory,
     initialEmoji:initEmoji
   });
