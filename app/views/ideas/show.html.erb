@@ -5,13 +5,13 @@
     <h2 class="mb-4" style="font-size: 4rem;">
       <%= @idea.emoji %>
     </h2>
-    <p>
+    <p class="text-break">
       発案者：<%= @idea.user.name %>
     </p>
-    <h1 class="mb-4">
+    <h1 class="mb-4 text-break">
       <%= @idea.title %>
     </h1>
-    <h2 class="mb-5">
+    <h2 class="mb-5 text-break">
       <%= @idea.outline %>
     </h2>
     <% if @idea.images.attached? %>
@@ -27,7 +27,7 @@
     <% end %>
     <br>
     <!-- 詳細 -->
-    <div id = "detail" class="mb-4"></div>
+    <div id = "detail" class="mb-4 text-break"></div>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <div class="fb-share-button" data-href="<%= request.url %>" data-layout="button" data-size="large">
       <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwarmuppbl.herokuapp.com%2Fideas%2F24&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
