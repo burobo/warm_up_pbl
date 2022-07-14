@@ -17,7 +17,7 @@
     <% if @idea.images.attached? %>
       <% @idea.images.each do |image| %>
         <% if image.representable? %>
-          <%= image_tag image %> <br>
+          <%= image_tag image, class: "w-100" %> <br>
         <% else %>
           <%= link_to rails_blob_path(image, disposition: "attachment") do %>
             <%= image_tag "download.png", alt: "Download file" %> <br>
