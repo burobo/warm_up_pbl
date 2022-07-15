@@ -38,7 +38,7 @@
                       <%= current_user.name %>
                     </span>
                     <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                      <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+                      <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "dropdown-item link-success" %></li>
                     </ul>
                   </li>
                 </ul>
@@ -48,10 +48,10 @@
               </li>
             <% else %>
               <li class="me-2">
-                <%= link_to "サインイン", new_user_session_path, class: "link-success py-3 px-4 border rounded text-decoration-none" %>
+                <%= link_to "サインイン", new_user_session_path, class: "link-success py-3 px-4 border border-success rounded text-decoration-none" %>
               </li>
               <li>
-                <%= link_to "サインアップ", new_user_registration_path, class: "link-success py-3 px-4 border rounded text-decoration-none" %>
+                <%= link_to "サインアップ", new_user_registration_path, class: "link-success py-3 px-4 border border-success rounded text-decoration-none" %>
               </li>
             <% end %>
           </ul>
