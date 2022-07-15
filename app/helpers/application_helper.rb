@@ -14,7 +14,7 @@ module ApplicationHelper
         description: :description, 
         type: 'website',
         url: request.original_url,
-        image: image_url("ogp_top_hands.jpg"),
+        image: image_url("sprout.png"),
         locale: 'ja_JP',
       },
       fb: {
