@@ -37,7 +37,6 @@ window.addEventListener("turbolinks:load", function() {
       return false;
     }
   ).group];
-  console.log(initCategory);
 
   // emojipicker生成
   const container = document.querySelector('.pickerContainer');
@@ -52,7 +51,13 @@ window.addEventListener("turbolinks:load", function() {
   });
 
   //選択された絵文字をセットする
+  setEmojiField(initEmoji);
   picker.addEventListener('emoji:select', event => {
-    document.getElementById('emoji_field').value = event.emoji;
+    setEmojiField(event.emoji);
   });
 });
+
+function setEmojiField(emoji) {
+  document.getElementById('emoji_field').value = emoji;
+  document.getElementById('emoji_show').innerHTML = emoji;
+}

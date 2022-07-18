@@ -4,7 +4,7 @@ RSpec.describe Idea, type: :model do
   describe 'validation' do
     subject { idea } 
     let(:user) { build(:user) }
-    let(:idea) { build(:idea, title: title, outline: outline, detail: detail, user: user) }
+    let(:idea) { build(:idea, title: title, outline: outline, detail: detail, user: user, emoji: emoji) }
 
     context "normal" do
       let(:idea) {build(:idea)}
