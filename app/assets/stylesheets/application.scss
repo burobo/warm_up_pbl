@@ -19,10 +19,16 @@
 //    padding: 0px;
 //   }
 @import "header";
+@import "theme";
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 .pagination {
   justify-content: center;
+}
+
+.page-item.active .page-link {
+  background-color: $primary;
+  border-color: $primary;
 }
 
 .text-decoration-underline-hover {
@@ -40,9 +46,4 @@
   outline: none;
   padding: 0;
   appearance: none;
-  color: $gray-500;
-}
-
-.notification-bell:hover {
-  color: $white;
 }

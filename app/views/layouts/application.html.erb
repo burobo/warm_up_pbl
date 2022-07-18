@@ -14,18 +14,20 @@
     <% end %>
   </head>
 
-  <body class="d-flex flex-column vh-100">
+  <body class="d-flex flex-column vh-100 bg-body">
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v14.0&appId=522684069319655&autoLogAppEvents=1" nonce="Kie28uVE"></script>
     <!-- <div id="js-hello-vue"></div> -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary sticky-top">
       <div class="container-fluid">
         <%= link_to image_tag("buds.png", size: "32x32", class: "navbar-brand"), root_path %>
-        <%= link_to "アイデアファーム", root_path, class:"navbar-brand" %>
+        <%= link_to "アイデアファーム", root_path, class:"navbar-brand text-primary" %>
         <% if user_signed_in? %>
           <div class="d-flex align-items-center ms-auto me-3 d-lg-none">
-            <%= link_to notifications_path, class: "notification-bell d-flex" do %>
-              <%= image_tag 'bell.svg'%>
+            <%= link_to notifications_path, class: "notification-bell d-flex link-primary" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+              </svg>
             <% end %>
           </div>
         <% end %>
@@ -35,29 +37,31 @@
         <div class="collapse navbar-collapse" id="navbarScroll">
           <% if user_signed_in? %>
             <div class="d-flex align-items-center ms-auto me-3 d-none d-lg-block">
-              <%= link_to notifications_path, class: "notification-bell d-flex" do %>
-                <%= image_tag 'bell.svg'%>
+              <%= link_to notifications_path, class: "notification-bell d-flex link-primary" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                </svg>
               <% end %>
             </div>
             <ul class="navbar-nav d-flex my-3">
               <li class="nav-item dropdown align-items-center">
-                <span class="py-3 px-4 dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="link-primary py-3 px-4 dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <%= current_user.name %>
                 </span>
                 <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+                  <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "dropdown-item link-primary" %></li>
                 </ul>
               </li>
             </ul>
             <div class="d-flex py-2">
-              <%= link_to "アイデア登録", ideas_register_path, method: :get, class: "py-3 px-4 border rounded text-decoration-none" %>
+              <%= link_to "アイデア登録", ideas_register_path, method: :get, class: "py-3 px-4 border border-primary rounded text-decoration-none" %>
             </div>
           <% else %>
             <div class="d-flex ms-auto py-2">
-              <%= link_to "サインイン", new_user_session_path, class: "py-3 px-4 me-2 border rounded text-decoration-none" %>
+              <%= link_to "サインイン", new_user_session_path, class: "py-3 px-4 me-2 border border-primary rounded text-decoration-none" %>
             </div>
             <div class="d-flex">
-              <%= link_to "サインアップ", new_user_registration_path, class: "py-3 px-4 border rounded text-decoration-none" %>
+              <%= link_to "サインアップ", new_user_registration_path, class: "py-3 px-4 border border-primary rounded text-decoration-none" %>
             </div>
           <% end %>
         </div>
@@ -75,14 +79,14 @@
       </div>
     </div>
     <% end %>
-    <footer class="footer mt-auto py-3 bg-dark">
+    <footer class="footer mt-auto py-3 bg-secondary">
       <div class="container">
         <ul class="d-flex align-items-center pt-3 list-unstyled">
           <li>
-            <%= link_to "アイデアファームとは", :about, class: "link-light py-3 px-4 text-decoration-underline-hover" %>
+            <%= link_to "アイデアファームとは", :about, class: "link-primary py-3 px-4 text-decoration-underline-hover" %>
           </li>
           <li>
-            <%= link_to "利用規約", "#", class: "link-light py-3 px-4 text-decoration-underline-hover" %>
+            <%= link_to "利用規約", "#", class: "link-primary py-3 px-4 text-decoration-underline-hover" %>
           </li>
         </ul>
       </div>

@@ -1,7 +1,7 @@
 <div class="p-3 p-sm-5 mb-4 bg-img">
   <div class="container">
-    <div class="display-4 text-white fw-bold">アイデアファーム supported by AIIT 中鉢PT</div>
-    <div class="fs-2 text-success fw-bold lh-base m-4">
+    <div class="display-4 text-primary fw-bold">アイデアファーム supported by AIIT 中鉢PT</div>
+    <div class="fs-2 fw-bold lh-base text-dark m-4">
       アプリのタネをみんなで撒こう！<br>
       アプリのタネをみんなで育てよう！
     </div>
@@ -10,7 +10,7 @@
 <div class ="ideas_container">
   <% @ideas.each do |idea| %>
     <a href="" onclick="window.location.href='ideas/<%= idea.id %>'" class="card w-75 bg-light mx-auto m-3 text-decoration-none link-dark">
-      <div class="row p-1">
+      <div class="row p-1 bg-secondary">
         <h1 class="col-md-2 d-flex justify-content-center align-items-center" style="font-size: 4rem;">
           <%= idea.emoji %>
         </h1>
