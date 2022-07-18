@@ -1,5 +1,5 @@
 class Idea < ApplicationRecord
-  validates :title, :outline, :detail, :user, presence: true
+  validates :title, :outline, :detail, :user, :emoji, presence: true
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy

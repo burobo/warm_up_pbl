@@ -26,7 +26,7 @@ RSpec.describe "Ideas", type: :request do
 
   describe "POST /ideas/register" do
     subject { post '/ideas/register', params: params}
-    let(:idea) { build(:idea, title: title, outline: outline, detail: detail, user: user) }
+    let(:idea) { build(:idea, title: title, outline: outline, detail: detail, user: user, emoji: emoji) }
     let(:params) { { idea: attributes_for(:idea)} }
     context "user is authenticated" do
       let(:idea) {build(:idea)}
@@ -54,7 +54,7 @@ RSpec.describe "Ideas", type: :request do
 
   describe "GET ideas/edit/:id" do
     subject { get "/ideas/edit/#{idea.id}", params: params}
-    let(:idea) { create(:idea, title: title, outline: outline, detail: detail, user: user) }
+    let(:idea) { create(:idea, title: title, outline: outline, detail: detail, user: user, emoji: emoji) }
     let(:params) { { idea: {id: idea.id} } }
     context "user is authenticated" do
       let(:idea) {create(:idea, user: user)}
@@ -83,7 +83,7 @@ RSpec.describe "Ideas", type: :request do
 
   describe "PUT /ideas/:id" do
     subject { put "/ideas/#{idea.id}", params: params}
-    let(:idea) { create(:idea, title: title, outline: outline, detail: detail, user: user) }
+    let(:idea) { create(:idea, title: title, outline: outline, detail: detail, user: user, emoji: emoji) }
     let(:params) { { idea: {id: idea.id, title: "updated_title", outline: "updated_outline", detail: "updated_detail"} } }
     context "user is authenticated" do
       let(:idea) { create(:idea, user: user) }
@@ -120,7 +120,7 @@ RSpec.describe "Ideas", type: :request do
 
   describe "PUT /ideas/:id/favorite" do
     subject { put "/ideas/#{idea.id}/favorite", params: params}
-    let(:idea) { create(:idea, title: title, outline: outline, detail: detail, user: user) }
+    let(:idea) { create(:idea, title: title, outline: outline, detail: detail, user: user, emoji: emoji) }
     let(:params) { { idea: {id: idea.id} } }
     context "user is authenticated" do
       let(:idea) { create(:idea, user: user) }

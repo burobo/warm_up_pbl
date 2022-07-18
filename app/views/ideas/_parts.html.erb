@@ -3,20 +3,20 @@
   <%= f.hidden_field :'id', :value=> idea.id %>
     <% if current_user==nil %>
       <%= button_tag type: 'submit' , class: 'btn btn-primary btn-sm' do %>
-        <%= content_tag :string, '見せて！' %>
+        <%= content_tag :string, 'みせて！' %>
       <% end %>
     <% elsif idea.user_id==current_user.id %>
     <% elsif idea.users.find_by_id(current_user.id)==nil %>
       <%= button_tag type: 'submit' , class: 'btn btn-primary btn-sm' do %>
-        <%= content_tag :string, '見せて！' %>
+        <%= content_tag :string, 'みせて！' %>
       <% end %>
     <% else %>
     <% end %>
   <% end %>
 </div>
 <div class="text-break">
-  見せて！された回数： <%= idea.favorites.size %><br>
-  見せて！した人：
+  みせて！された回数： <%= idea.favorites.size %><br>
+  みせて！した人：
   <% idea.users.each do |user| %>
     <%= user.name %>
   <% end %>
