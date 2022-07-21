@@ -19,7 +19,11 @@
         <% end %>
       <% end %>
     </div>
-    <span class="badge rounded-pill bg-primary">開発前</span>
+    <div class="">
+      <label for="" class="">開発ステータス：</label>
+      <%= select :'status','status',["開発前", "開発中", "完了"]%>
+      <%= link_to "更新" %>
+    </div>
     <h1 class="mb-4 text-break">
       <%= @idea.title %>
     </h1>
