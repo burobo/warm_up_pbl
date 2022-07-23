@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      idea: "アイデア"
+    attributes:
+      idea:
+        status: ステータス
+        statuses:
+          waiting: "開発前"
+          wip: "開発中"
+          done: "完了"
