@@ -14,10 +14,10 @@
         <h1 class="col-md-2 d-flex justify-content-center align-items-center" style="font-size: 4rem;">
           <%= idea.emoji %>
         </h1>
-        <div class="col-md-10">
+        <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title text-decoration-underline-hover"><%= idea.title %></h5>
-            <p class="card-text">
+            <span class="card-text">
             最終更新:
             <% if (Time.now.to_i - idea.updated_at.to_i) <= 60 * 60 %>
             <%= (Time.now.to_i - idea.updated_at.to_i) / 60 %>
@@ -29,12 +29,16 @@
             <%= (Time.now.to_i - idea.updated_at.to_i) / 60 / 60 / 24 %>
             日前
             <% end  %>
-            </p>
+            </span>
             <p class="card-text">
               <%= idea.outline %>
             </p>
           </div>
         </div>
+        <div class="col-md-2 my-2 border-start d-flex justify-content-center align-items-center">
+          <div class="badge rounded-pill bg-primary">開発前</div>
+        </div>
+
       </div>
     </a>
   <% end %>
