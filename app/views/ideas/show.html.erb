@@ -26,7 +26,15 @@
         <%= link_to "更新" %>
       </div>
     <% else %>
-      <div class="badge rounded-pill bg-primary">開発前</div>
+      <div class="badge rounded-pill bg-primary">
+        <% if @idea.status == "wip" %>
+          <%= t "activerecord.attributes.idea.statuses.wip" %>
+        <% elsif @idea.status == "done" %>
+          <%= t "activerecord.attributes.idea.statuses.done" %>
+        <% else %>
+          <%= t "activerecord.attributes.idea.statuses.waiting" %>
+        <% end %>
+      </div>
     <% end %>
     <h1 class="mb-4 text-break">
       <%= @idea.title %>
