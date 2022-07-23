@@ -19,11 +19,15 @@
         <% end %>
       <% end %>
     </div>
-    <div class="">
-      <label for="" class="">開発ステータス：</label>
-      <%= select :'status','status',["開発前", "開発中", "完了"]%>
-      <%= link_to "更新" %>
-    </div>
+    <% if @idea.user == current_user %>
+      <div class="">
+        <label for="" class="">開発ステータス：</label>
+        <%= select :'status','status',["開発前", "開発中", "完了"]%>
+        <%= link_to "更新" %>
+      </div>
+    <% else %>
+      <div class="badge rounded-pill bg-primary">開発前</div>
+    <% end %>
     <h1 class="mb-4 text-break">
       <%= @idea.title %>
     </h1>
