@@ -20,13 +20,15 @@
       <% end %>
     </div>
     <% if @idea.user == current_user %>
-      <div class="">
-        <label for="" class="">開発ステータス：</label>
-        <%= select :'status','status',["開発前", "開発中", "完了"]%>
-        <%= link_to "更新" %>
-      </div>
+      <%= form_with method: :post do |f| %>
+        <div class="form-group row">
+          <label for="idea-status" class="col-form-label col-sm-2">開発ステータス：</label>
+          <%= f.select :status, Idea.statuses.map { |k, _v| [t("activerecord.attributes.idea.statuses.#{k}"), k] }, {}, { class: "form-select", style: "width: 280px;", data: {} } %>
+        </div>
+        <%= f.submit "更新", class: "btn btn-primary btn-sm my-3", disable_with: '更新中...' %>
+      <% end %>
     <% else %>
-      <div class="badge rounded-pill bg-primary">
+      <div class="badge rounded-pill bg-primary mb-3">
         <% if @idea.status == "wip" %>
           <%= t "activerecord.attributes.idea.statuses.wip" %>
         <% elsif @idea.status == "done" %>
