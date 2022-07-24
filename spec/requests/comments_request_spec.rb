@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Comments", type: :request do
   let(:user) { create :user }
+  let(:user2) { create :user }
 
   describe 'POST /ideas/:ideas_show_id/comments' do
     before do
@@ -20,9 +21,14 @@ RSpec.describe "Comments", type: :request do
     end
     context "when favorite idea is present" do
       let!(:favorite) { create :favorite, idea: idea, user: user }
-
+      let!(:favorite2) { create :favorite, idea: idea, user: user2 }
       it do
         expect { subject }.to change(Comment, :count).by(1)
+        notifications_created = Notification.last(2)
+        # イイねしたユーザへの通知
+        expect(notifications_created[1].user_id).to eq user2.id
+        # 発案者への通知
+        expect(notifications_created[0].user_id).to eq idea.user_id
         expect(response).to redirect_to headers[:HTTP_REFERER]
       end
     end
@@ -37,9 +43,11 @@ RSpec.describe "Comments", type: :request do
 
     context "When originator makes comment" do
       let(:idea) { create :idea, user: user }
-
+      let!(:favorite2) { create :favorite, idea: idea, user: user2 }
       it do
         expect { subject }.to change(Comment, :count).by(1)
+        notification_created = Notification.last
+        expect(notification_created.user_id).to eq user2.id
         expect(response).to redirect_to headers[:HTTP_REFERER]
       end
     end
