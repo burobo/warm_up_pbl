@@ -84,7 +84,7 @@ RSpec.describe "Ideas", type: :request do
   describe "PUT /ideas/:id" do
     subject { put "/ideas/#{idea.id}", params: params}
     let(:idea) { create(:idea, title: title, outline: outline, detail: detail, user: user, emoji: emoji) }
-    let(:params) { { idea: {id: idea.id, title: "updated_title", outline: "updated_outline", detail: "updated_detail"} } }
+    let(:params) { { idea: {id: idea.id, title: "updated_title", outline: "updated_outline", detail: "updated_detail", status: "wip"} } }
     context "user is authenticated" do
       let(:idea) { create(:idea, user: user) }
       it "normal" do
@@ -96,6 +96,7 @@ RSpec.describe "Ideas", type: :request do
         expect(idea_updated.title).to eq params[:idea][:title]
         expect(idea_updated.outline).to eq params[:idea][:outline]
         expect(idea_updated.detail).to eq params[:idea][:detail]
+        expect(idea_updated.status).to eq params[:idea][:status]
       end
       it "updates a idea that is not mine" do
         sign_in user2
