@@ -3,28 +3,25 @@ class Comment < ApplicationRecord
   belongs_to :idea
   has_one :notification, dependent: :destroy
   validates :content, presence: true
-  
-  def create_notification_comment()
-    Notification.create!(
+
+  def create_comment_notification_for_originator
+    return Notification.create!(
       event: Notification.events[:commented],
       comment_id: self.id,
       user_id: self.idea.user.id
     )
-    
-    notifications_for_other_users_favorite = self.idea.favorites.select {
-        |favorite| favorite.user_id != self.user.id
-      }.map{
-        |favorite| {
+  end
+  
+  def create_comment_notifications_for_implementor
+    return self.idea.favorites.select {
+      |favorite| favorite.user_id != self.user.id
+    }.map{
+      |favorite|
+        Notification.create!(
           event: Notification.events[:commented],
           comment_id: self.id,
-          user_id: favorite.user_id,
-          created_at: Time.current,
-          updated_at: Time.current
-        }
-      }
-
-      unless notifications_for_other_users_favorite.blank?
-        Notification.insert_all!(notifications_for_other_users_favorite)
-      end
+          user_id: favorite.user_id
+        )
+    }
   end
 end
