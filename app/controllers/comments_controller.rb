@@ -12,8 +12,6 @@ class CommentsController < ApplicationController
         redirect_to request.referer, notice: "コメントの投稿に失敗しました。"
       end
     end
-
-
   end
   
   private
