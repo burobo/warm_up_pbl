@@ -1,7 +1,7 @@
 <% set_meta_tags title: 'アイデア編集' %>
 
 <div class="container">
-  <%= form_with model: @idea, url: ideas_update_path(@idea.id), method: :put, role: "form" do |form|%>
+  <%= form_with model: @idea, url: ideas_update_path(@idea.id), method: :put, role: "form" do |form| %>
     <div class="row">
       <div class="form-group col-md-8 mb-3">
         <label class="form-label h4">アイキャッチ絵文字</label>
