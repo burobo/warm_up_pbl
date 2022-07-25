@@ -4,6 +4,7 @@ FactoryBot.define do
     event { nil }
     checked { false }
     association :favorite
+    association :comment
     user
   end
 end

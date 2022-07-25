@@ -1,0 +1,6 @@
+あなたのアイデアがコメントされました。<br>
+実装者とやりとりしましょう。<br>
+<br>
+アイデア：<%= link_to @notification.comment.idea.title , ideas_show_url(@notification.comment.idea.id) %> <br>
+コメントした人：<%= @notification.comment.user.name %> <br>
+コメント：<%= @notification.comment.content %> <br>
