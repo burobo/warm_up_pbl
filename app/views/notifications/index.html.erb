@@ -7,7 +7,7 @@
       <div class="card w-75 mx-auto m-3">
         <div class="card-body">
           <div class="p-1 row">
-            <a href="" onclick="window.location.href='ideas/<%= notification.favorited? ? notification.favorite.idea.id : '' %>'" class="text-decoration-underline-hover col-10">
+            <a href="" onclick="window.location.href='ideas/<%= notification.favorited? ? notification.favorite.idea.id : notification.comment.idea.id %>'" class="text-decoration-underline-hover col-10">
               <div class="h6 card-title text-black">
                 <% if notification.favorited? %>
                   <%= notification.favorite.user.name %>
