@@ -21,11 +21,11 @@
     </div>
     <% if @idea.user == current_user %>
       <%= form_with model: @idea, url: ideas_update_path(@idea.id), method: :put do |f| %>
-        <div class="form-group row">
-          <label for="idea-status" class="col-form-label col-sm-2">開発ステータス：</label>
+        <div class="d-flex align-items-center">
+          <label for="idea-status" class="">開発ステータス：</label>
           <%= f.select :status, Idea.statuses.map { |k, _v| [t("activerecord.attributes.idea.statuses.#{k}"), k] }, {}, { class: "form-select", style: "width: 180px;" } %>
+          <%= f.submit "更新", class: "btn btn-primary ms-2", disable_with: '更新中...' %>
         </div>
-        <%= f.submit "更新", class: "btn btn-primary btn-sm my-3", disable_with: '更新中...' %>
       <% end %>
     <% else %>
       <div class="badge rounded-pill bg-primary mb-3">
