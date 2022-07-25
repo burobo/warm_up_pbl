@@ -10,15 +10,24 @@
             <a href="" onclick="window.location.href='ideas/<%= notification.favorited? ? notification.favorite.idea.id : '' %>'" class="text-decoration-underline-hover col-10">
               <div class="h6 card-title text-black">
                 <% if notification.favorited? %>
-                  <%= notification.favorite.user.name %>が
-                  <%= notification.favorite.idea.title %>をみせて！しました。
+                  <%= notification.favorite.user.name %>
+                  が
+                  あなた
+                  のアイデア
+                  <%= notification.favorite.idea.title %>
+                  にみせて！しました。
                 <% end %>
                 <% if notification.commented? %>
-                  <%= notification.comment.user.name %>が
-                  <% if notification.comment.idea.user.id !=  current_user.id %>
-                    <%= notification.comment.idea.user.name %>のアイデア
+                  <%= notification.comment.user.name %>
+                  が
+                  <% if notification.comment.idea.user.id ==  current_user.id %>
+                    あなた
+                  <% else %>
+                    <%= notification.comment.idea.user.name %>
                   <% end %>
-                  <%= notification.comment.idea.title %>にコメントしました。
+                  のアイデア
+                  <%= notification.comment.idea.title %>
+                  にコメントしました。
                 <% end %>
               </div>
             </a>
