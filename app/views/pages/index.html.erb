@@ -36,9 +36,16 @@
           </div>
         </div>
         <div class="col-md-2 my-2 border-start d-flex justify-content-center align-items-center">
-          <div class="badge rounded-pill bg-primary">開発前</div>
+          <div class="badge rounded-pill bg-primary">
+            <% if idea.status == "wip" %>
+              <%= t "activerecord.attributes.idea.statuses.wip" %>
+            <% elsif idea.status == "done" %>
+              <%= t "activerecord.attributes.idea.statuses.done" %>
+            <% else %>
+              <%= t "activerecord.attributes.idea.statuses.waiting" %>
+            <% end %>
+          </div>
         </div>
-
       </div>
     </a>
   <% end %>
