@@ -4,7 +4,7 @@ module ApplicationHelper
       site: 'アイデアファーム supported by AIIT 中鉢PT',
       reverse: true,
       separator: '|',
-      description: 'アイディアファームはアイディアとスキルをマッチングさせ、アイディアを実現させるサービスです。',
+      description: 'アイデアファームはアイデアとスキルをマッチングさせ、アイデアを実現させるサービスです。',
       keywords: 'アイデア, アイデアファーム, AIIT',
       canonical: request.original_url,
       noindex: !Rails.env.production?,
